@@ -55,8 +55,7 @@ function layout(opts) {
   }).join('\n          ');
 
   const fullUrl = BASE_URL + canonical;
-  const depth = (pagePath.match(/\//g) || []).length;
-  const assetBase = '../'.repeat(depth) + 'assets/';
+  const assetBase = pagePath.includes('/') ? '../assets/' : 'assets/';
 
   return `<!DOCTYPE html>
 <html lang="pl">
@@ -1281,9 +1280,8 @@ function articleJsonLd() {
 
 const PAGES = pages();
 PAGES.forEach((p) => {
-  const outRel = p.path === 'index.html' ? 'index.html' : p.path.replace(/\.html$/, '/index.html');
   const html = layout({
-    path: outRel,
+    path: p.path,
     title: p.title,
     description: p.description,
     canonical: p.canonical,
@@ -1292,10 +1290,10 @@ PAGES.forEach((p) => {
     content: p.content,
     activeNav: p.activeNav || p.canonical,
   });
-  const outPath = path.join(OUT, outRel);
+  const outPath = path.join(OUT, p.path);
   fs.mkdirSync(path.dirname(outPath), { recursive: true });
   fs.writeFileSync(outPath, html);
-  console.log('wrote', outRel);
+  console.log('wrote', p.path);
 });
 
 // sitemap.xml
