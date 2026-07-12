@@ -3,26 +3,26 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Generator kart pracy — ZnaszTo</title>
-  <meta name="description" content="Darmowy generator kart pracy dla nauczycieli. Wybierz temat, liczbę i typ zadań, a otrzymasz kartę pracy gotową do druku lub PDF.">
+  <title>Narzędzia AI dla nauczycieli — ZnaszTo</title>
+  <meta name="description" content="Darmowe narzędzia AI dla nauczycieli: generator lekcji, generator kart pracy i generator opinii oraz obserwacji. Bez logowania, z eksportem do PDF.">
   <meta name="author" content="ZnaszTo">
-  <link rel="canonical" href="https://znaszto.netlify.app/generator-kart-pracy">
+  <link rel="canonical" href="https://znaszto.netlify.app/narzedzia">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Generator kart pracy — ZnaszTo">
-  <meta property="og:description" content="Darmowy generator kart pracy dla nauczycieli. Wybierz temat, liczbę i typ zadań, a otrzymasz kartę pracy gotową do druku lub PDF.">
-  <meta property="og:url" content="https://znaszto.netlify.app/generator-kart-pracy">
+  <meta property="og:title" content="Narzędzia AI dla nauczycieli — ZnaszTo">
+  <meta property="og:description" content="Darmowe narzędzia AI dla nauczycieli: generator lekcji, generator kart pracy i generator opinii oraz obserwacji. Bez logowania, z eksportem do PDF.">
+  <meta property="og:url" content="https://znaszto.netlify.app/narzedzia">
   <meta property="og:image" content="https://znaszto.netlify.app/assets/og-image.svg">
   <meta property="og:locale" content="pl_PL">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@ZnaszTo">
-  <meta name="twitter:title" content="Generator kart pracy — ZnaszTo">
-  <meta name="twitter:description" content="Darmowy generator kart pracy dla nauczycieli. Wybierz temat, liczbę i typ zadań, a otrzymasz kartę pracy gotową do druku lub PDF.">
+  <meta name="twitter:title" content="Narzędzia AI dla nauczycieli — ZnaszTo">
+  <meta name="twitter:description" content="Darmowe narzędzia AI dla nauczycieli: generator lekcji, generator kart pracy i generator opinii oraz obserwacji. Bez logowania, z eksportem do PDF.">
   <meta name="twitter:image" content="https://znaszto.netlify.app/assets/og-image.svg">
-  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap">
-  <link rel="stylesheet" href="assets/styles.css">
+  <link rel="stylesheet" href="../assets/styles.css">
 
 </head>
 <body class="">
@@ -55,60 +55,29 @@
 <section class="section">
   <div class="container">
     <div class="section-head">
-      <span class="eyebrow">Narzędzie</span>
-      <h1>Generator kart pracy</h1>
-      <p class="lead" style="margin-inline:auto">Wygeneruj kartę pracy z zadaniami o rosnącej trudności — gotową do druku lub PDF. Za darmo, bez logowania, dane nie są nigdzie wysyłane.</p>
+      <span class="eyebrow">Narzędzia</span>
+      <h1>Darmowe narzędzia AI dla nauczycieli</h1>
+      <p>Wszystkie narzędzia działają w przeglądarce — bez logowania, bez wysyłania danych, z eksportem do PDF.</p>
     </div>
-    <form class="gen-form" id="kp-form" novalidate>
-      <div class="field">
-        <label for="kp-temat">Temat karty pracy *</label>
-        <input type="text" id="kp-temat" name="temat" required placeholder="Np. rozpoznawanie rzeczownika">
-      </div>
-      <div class="form-row">
-        <div class="field">
-          <label for="kp-przedmiot">Przedmiot</label>
-          <select id="kp-przedmiot" name="przedmiot">
-            <option value="">— wybierz —</option>
-            <option>Język polski</option><option>Matematyka</option><option>Przyroda / Biologia</option>
-            <option>Fizyka / Chemia</option><option>Historia / WOS</option><option>Język obcy</option>
-            <option>Informatyka</option><option>Geografia</option><option>Inny</option>
-          </select>
-        </div>
-        <div class="field">
-          <label for="kp-klasa">Poziom klasy</label>
-          <select id="kp-klasa" name="klasa">
-            <option value="">— wybierz —</option>
-            <option>Edukacja wczesnoszkolna (1–3)</option>
-            <option>Klasy 4–6</option><option>Klasy 7–8</option>
-            <option>Szkoła ponadpodstawowa</option>
-          </select>
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="field">
-          <label for="kp-liczba">Liczba zadań</label>
-          <select id="kp-liczba" name="liczba">
-            <option value="3">3</option><option value="4" selected>4</option><option value="5">5</option><option value="6">6</option>
-          </select>
-        </div>
-        <div class="field">
-          <label for="kp-typ">Typ zadań</label>
-          <select id="kp-typ" name="typ">
-            <option value="mieszane" selected>Mieszane (zalecane)</option>
-            <option value="praktyczne">Ćwiczenia praktyczne</option>
-            <option value="pytania">Pytania otwarte</option>
-            <option value="luki">Uzupełnianie luk</option>
-          </select>
-        </div>
-      </div>
-      <div><button type="submit" class="btn btn--primary btn--lg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 21 12-12M14 5l2 2M19 10l1 1M16 3l1 1M21 6l1 1M9 10l1 1"/></svg> Wygeneruj kartę pracy</button></div>
-    </form>
-    <div class="gen-output" id="kp-out" aria-live="polite">
-      <div class="gen-panel active" id="kp-content"></div>
-      <div class="gen-actions">
-        <button type="button" class="btn btn--primary" onclick="window.print()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/></svg> Drukuj / zapisz jako PDF</button>
-        <a class="btn btn--ghost" href="/generator">Generator lekcji AI</a>
-      </div>
+    <div class="grid grid--3">
+      <a class="card" href="/generator">
+        <span class="card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 21 12-12M14 5l2 2M19 10l1 1M16 3l1 1M21 6l1 1M9 10l1 1"/></svg></span>
+        <h3>Generator lekcji AI</h3>
+        <p>Gotowy konspekt, karta pracy i zadanie domowe — po polsku, w kilka sekund.</p>
+        <span class="card__arrow">Otwórz <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a class="card" href="/generator-kart-pracy">
+        <span class="card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/></svg></span>
+        <h3>Generator kart pracy</h3>
+        <p>Karta pracy z zadaniami o rosnącej trudności, gotowa do druku i PDF.</p>
+        <span class="card__arrow">Otwórz <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a class="card" href="/generator-opinii">
+        <span class="card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg></span>
+        <h3>Generator opinii i obserwacji</h3>
+        <p>Opinie, wnioski do PPP i karty obserwacji dla nauczycieli, pedagogów i psychologów szkolnych.</p>
+        <span class="card__arrow">Otwórz <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
     </div>
   </div>
 </section>
@@ -152,6 +121,6 @@
       <span>ZnaszTo — kompetencje cyfrowe dla nauczycieli</span>
     </div>
   </footer>
-  <script src="assets/app.js" defer></script>
+  <script src="../assets/app.js" defer></script>
 </body>
 </html>
