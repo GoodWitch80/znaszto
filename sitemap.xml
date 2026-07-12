@@ -46,6 +46,31 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://znaszto.netlify.app/blog/rodo-ai-w-szkole</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://znaszto.netlify.app/blog/prompt-engineering-dla-nauczycieli</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://znaszto.netlify.app/blog/karta-pracy-z-ai-w-5-minut</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://znaszto.netlify.app/slownik-ai</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://znaszto.netlify.app/kontakt</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://znaszto.netlify.app/o-projekcie</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>

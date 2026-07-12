@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Słownik AI dla nauczycieli — ZnaszTo</title>
+  <meta name="description" content="Słownik AI dla nauczycieli: LLM, prompt, halucynacja, fine-tuning, RODO i inne pojęcia ze świata sztucznej inteligencji w szkole.">
+  <meta name="author" content="ZnaszTo">
+  <link rel="canonical" href="https://znaszto.netlify.app/slownik-ai/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Słownik AI dla nauczycieli — ZnaszTo">
+  <meta property="og:description" content="Słownik AI dla nauczycieli: LLM, prompt, halucynacja, fine-tuning, RODO i inne pojęcia ze świata sztucznej inteligencji w szkole.">
+  <meta property="og:url" content="https://znaszto.netlify.app/slownik-ai/">
+  <meta property="og:image" content="https://znaszto.netlify.app/assets/og-image.svg">
+  <meta property="og:locale" content="pl_PL">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@ZnaszTo">
+  <meta name="twitter:title" content="Słownik AI dla nauczycieli — ZnaszTo">
+  <meta name="twitter:description" content="Słownik AI dla nauczycieli: LLM, prompt, halucynacja, fine-tuning, RODO i inne pojęcia ze świata sztucznej inteligencji w szkole.">
+  <meta name="twitter:image" content="https://znaszto.netlify.app/assets/og-image.svg">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap">
+  <link rel="stylesheet" href="assets/styles.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"DefinedTermSet","@id":"https://znaszto.netlify.app/slownik-ai","name":"Słownik AI dla nauczycieli","inLanguage":"pl-PL","url":"https://znaszto.netlify.app/slownik-ai","hasDefinedTerm":[{"@type":"DefinedTerm","name":"Sztuczna inteligencja (AI)","description":"Systemy, które wykonują zadania wymagające ludzkiego myślenia — np. rozpoznawanie tekstu, generowanie odpowiedzi, analiza danych."},{"@type":"DefinedTerm","name":"LLM (Large Language Model)","description":"Duży model językowy — program uczony na ogromnych zbiorach tekstu, który generuje i rozumie język naturalny, np. ChatGPT, Gemini, Copilot."},{"@type":"DefinedTerm","name":"Prompt","description":"Polecenie wpisane do modelu językowego. Jakość odpowiedzi AI zależy głównie od jakości promptu."},{"@type":"DefinedTerm","name":"Prompt engineering","description":"Umiejętność pisania skutecznych poleceń do AI — z uwzględnieniem roli, kontekstu, tematu, formatu i ograniczeń."},{"@type":"DefinedTerm","name":"Halucynacja AI","description":"Zjawisko, w którym model generuje wiarygodnie brzmiącą, ale nieprawdziwą informację lub zmyślone źródło. Dlatego zawsze weryfikuj fakty."},{"@type":"DefinedTerm","name":"Kontekst","description":"Informacje podane w prompcie, które model uwzględnia w odpowiedzi — np. poziom klasy, przedmiot, czas lekcji."},{"@type":"DefinedTerm","name":"Token","description":"Fragment tekstu (słowo lub część słowa), na którym model przetwarza język. Liczba tokenów wpływa na długość i koszt odpowiedzi."},{"@type":"DefinedTerm","name":"Fine-tuning","description":"Dostosowanie wytrenowanego modelu do konkretnego zadania na własnych danych — poza zasięgiem większości nauczycieli, ale warto znać pojęcie."},{"@type":"DefinedTerm","name":"Generatywna AI","description":"AI, która tworzy nowe treści — tekst, obrazy, dźwięk — w odpowiedzi na polecenie, w przeciwieństwie do AI tylko klasyfikującej dane."},{"@type":"DefinedTerm","name":"Chatbot","description":"Program prowadzący rozmowę w języku naturalnym, np. ChatGPT. W edukacji pomaga generować materiały, ale nie zastępuje nauczyciela."},{"@type":"DefinedTerm","name":"TIK","description":"Technologie Informacyjno-Komunikacyjne — narzędzia cyfrowe wspomagające nauczanie: tablice, prezentacje, arkusze, wideokonferencje, platformy edukacyjne."},{"@type":"DefinedTerm","name":"RODO","description":"Ogólne Rozporządzenie o Ochronie Danych — unijne prawo chroniące dane osobowe, w tym danych uczniów. Wymaga anonimizacji przy korzystaniu z AI."},{"@type":"DefinedTerm","name":"Podstawa programowa","description":"Oficjalny dokument MEN określający wymagane treści kształcenia dla danego przedmiotu i etapu. Materiały z AI muszą być z nią zgodne."},{"@type":"DefinedTerm","name":"Samooocena","description":"Element karty pracy, w którym uczeń ocenia własny postęp — rozwija refaktię i odpowiedzialność za naukę."}]}]}</script>
+</head>
+<body class="">
+  <a class="skip-link" href="#main">Przejdź do treści</a>
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="brand" href="/" aria-label="ZnaszTo — strona główna">
+        <span aria-hidden="true" style="width:30px;height:30px;display:inline-flex"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c0 1.3 2.7 2.5 6 2.5s6-1.2 6-2.5v-5"/></svg></span>
+        ZnaszTo
+      </a>
+      <nav class="nav" data-nav aria-label="Główna nawigacja">
+          <a href="/">Start</a>
+          <a href="/generator">Generator</a>
+          <a href="/narzedzia-tik">Narzędzia TIK</a>
+          <a href="/llm-w-szkole">LLM w szkole</a>
+          <a href="/scenariusze">Scenariusze</a>
+          <a href="/blog">Blog</a>
+          <a href="/o-projekcie">O projekcie</a>
+          <a href="/kontakt">Kontakt</a>
+      </nav>
+      <div class="header-actions">
+        <button class="theme-toggle" data-theme-toggle aria-label="Przełącz motyw"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+        <button class="nav-toggle" data-nav-toggle aria-label="Przełącz menu" aria-expanded="false">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+  <main id="main">
+<section class="section">
+  <div class="container container-narrow">
+    <span class="eyebrow">Słownik</span>
+    <h1 style="font-size:var(--text-xl);margin-top:var(--space-3)">Słownik AI dla nauczycieli</h1>
+    <p class="lead" style="margin-top:var(--space-4)">Najważniejsze pojęcia ze świata sztucznej inteligencji i cyfrowych kompetencji — zebrane w jednym miejscu. Przydatne przy korzystaniu z AI w szkole.</p>
+    <dl class="prose" style="margin-top:var(--space-8);display:grid;gap:var(--space-3)">
+      <dt id="sztuczna">Sztuczna inteligencja (AI)</dt><dd>Systemy, które wykonują zadania wymagające ludzkiego myślenia — np. rozpoznawanie tekstu, generowanie odpowiedzi, analiza danych.</dd>
+      <dt id="llm">LLM (Large Language Model)</dt><dd>Duży model językowy — program uczony na ogromnych zbiorach tekstu, który generuje i rozumie język naturalny, np. ChatGPT, Gemini, Copilot.</dd>
+      <dt id="prompt">Prompt</dt><dd>Polecenie wpisane do modelu językowego. Jakość odpowiedzi AI zależy głównie od jakości promptu.</dd>
+      <dt id="prompt">Prompt engineering</dt><dd>Umiejętność pisania skutecznych poleceń do AI — z uwzględnieniem roli, kontekstu, tematu, formatu i ograniczeń.</dd>
+      <dt id="halucynacja">Halucynacja AI</dt><dd>Zjawisko, w którym model generuje wiarygodnie brzmiącą, ale nieprawdziwą informację lub zmyślone źródło. Dlatego zawsze weryfikuj fakty.</dd>
+      <dt id="kontekst">Kontekst</dt><dd>Informacje podane w prompcie, które model uwzględnia w odpowiedzi — np. poziom klasy, przedmiot, czas lekcji.</dd>
+      <dt id="token">Token</dt><dd>Fragment tekstu (słowo lub część słowa), na którym model przetwarza język. Liczba tokenów wpływa na długość i koszt odpowiedzi.</dd>
+      <dt id="fine-tuning">Fine-tuning</dt><dd>Dostosowanie wytrenowanego modelu do konkretnego zadania na własnych danych — poza zasięgiem większości nauczycieli, ale warto znać pojęcie.</dd>
+      <dt id="generatywna">Generatywna AI</dt><dd>AI, która tworzy nowe treści — tekst, obrazy, dźwięk — w odpowiedzi na polecenie, w przeciwieństwie do AI tylko klasyfikującej dane.</dd>
+      <dt id="chatbot">Chatbot</dt><dd>Program prowadzący rozmowę w języku naturalnym, np. ChatGPT. W edukacji pomaga generować materiały, ale nie zastępuje nauczyciela.</dd>
+      <dt id="tik">TIK</dt><dd>Technologie Informacyjno-Komunikacyjne — narzędzia cyfrowe wspomagające nauczanie: tablice, prezentacje, arkusze, wideokonferencje, platformy edukacyjne.</dd>
+      <dt id="rodo">RODO</dt><dd>Ogólne Rozporządzenie o Ochronie Danych — unijne prawo chroniące dane osobowe, w tym danych uczniów. Wymaga anonimizacji przy korzystaniu z AI.</dd>
+      <dt id="podstawa">Podstawa programowa</dt><dd>Oficjalny dokument MEN określający wymagane treści kształcenia dla danego przedmiotu i etapu. Materiały z AI muszą być z nią zgodne.</dd>
+      <dt id="samooocena">Samooocena</dt><dd>Element karty pracy, w którym uczeń ocenia własny postęp — rozwija refaktię i odpowiedzialność za naukę.</dd>
+    </dl>
+    <div class="cta-band" style="margin-top:var(--space-12)">
+      <h2>Przejdź od teorii do praktyki</h2>
+      <p>Wygeneruj pierwszą lekcję z AI — bez logowania, po polsku.</p>
+      <a class="btn btn--primary btn--lg" href="/generator" style="margin-top:var(--space-6)">Otwórz generator <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</section>
+  </main>
+  <footer class="site-footer">
+    <div class="container site-footer__grid">
+      <div>
+        <a class="brand" href="/" aria-label="ZnaszTo">
+          <span aria-hidden="true" style="width:28px;height:28px;display:inline-flex"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c0 1.3 2.7 2.5 6 2.5s6-1.2 6-2.5v-5"/></svg></span>
+          ZnaszTo
+        </a>
+        <p>Kompetencje cyfrowe dla nauczycieli. Platforma dla nauczycieli, którzy chcą wykorzystywać nowoczesne narzędzia cyfrowe — TIK, LLM i AI — w pracy z uczniami i dokumentacją szkolną.</p>
+      </div>
+      <div>
+        <h4>Strony</h4>
+        <ul>
+          <li><a href="/">Start</a></li>
+          <li><a href="/generator">Generator lekcji AI</a></li>
+          <li><a href="/scenariusze">Scenariusze lekcji</a></li>
+          <li><a href="/blog">Blog</a></li>
+          <li><a href="/o-projekcie">O projekcie</a></li>
+          <li><a href="/kontakt">Kontakt</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Moduły</h4>
+        <ul>
+          <li><a href="/narzedzia-tik">Narzędzia TIK</a></li>
+          <li><a href="/llm-w-szkole">LLM w szkole</a></li>
+          <li><a href="/ai-w-pracy">AI w pracy</a></li>
+          <li><a href="/wspolpraca">Współpraca zespołowa</a></li>
+          <li><a href="/slownik-ai">Słownik AI</a></li>
+          <li><a href="/polityka-prywatnosci">Polityka prywatności</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container site-footer__bottom">
+      <span>© 2026 ZnaszTo. Materiały edukacyjne.</span>
+      <span>ZnaszTo — kompetencje cyfrowe dla nauczycieli</span>
+    </div>
+  </footer>
+  <script src="assets/app.js" defer></script>
+</body>
+</html>

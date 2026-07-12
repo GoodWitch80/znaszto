@@ -16,6 +16,7 @@ const NAV = [
   { href: '/scenariusze', label: 'Scenariusze' },
   { href: '/blog', label: 'Blog' },
   { href: '/o-projekcie', label: 'O projekcie' },
+  { href: '/kontakt', label: 'Kontakt' },
 ];
 
 const ICON = {
@@ -122,6 +123,7 @@ ${content}
           <li><a href="/scenariusze">Scenariusze lekcji</a></li>
           <li><a href="/blog">Blog</a></li>
           <li><a href="/o-projekcie">O projekcie</a></li>
+          <li><a href="/kontakt">Kontakt</a></li>
         </ul>
       </div>
       <div>
@@ -131,6 +133,7 @@ ${content}
           <li><a href="/llm-w-szkole">LLM w szkole</a></li>
           <li><a href="/ai-w-pracy">AI w pracy</a></li>
           <li><a href="/wspolpraca">Współpraca zespołowa</a></li>
+          <li><a href="/slownik-ai">Słownik AI</a></li>
           <li><a href="/polityka-prywatnosci">Polityka prywatności</a></li>
         </ul>
       </div>
@@ -395,6 +398,265 @@ function modulePageContent({ title, eyebrow, intro, sections, ctaText }) {
   </section>`;
 }
 
+/* ---------- Generic article builder + new content ---------- */
+
+function articleContentGeneric(o) {
+  return `<section class="section">
+  <div class="container">
+    <div class="prose">
+      <nav class="breadcrumb" aria-label="Ścieżka okruszków">
+        <a href="/">Start</a><span aria-hidden="true">/</span>
+        <a href="/blog">Blog</a><span aria-hidden="true">/</span>
+        <span aria-current="page">${o.shortTitle}</span>
+      </nav>
+      <h1>${o.title}</h1>
+      <div class="meta">
+        <span>${ICON.clock} ${o.dateLabel}</span>
+        <span>·</span><span>Autor: ZnaszTo</span>
+        <span>·</span><span>Czas czytania: ${o.readTime}</span>
+      </div>
+      ${o.body}
+      <section class="faq" aria-labelledby="faq-heading">
+        <h2 id="faq-heading">Najczęściej zadawane pytania</h2>
+        ${o.faq.map(faqItem).join('\n        ')}
+      </section>
+      <section class="related" aria-labelledby="related-questions-heading">
+        <h2 id="related-questions-heading">Powiązane pytania</h2>
+        ${o.related.map(faqItem).join('\n        ')}
+        <p class="sr-only" data-copy-live aria-live="polite"></p>
+      </section>
+      <div class="cta-band" style="margin-top:var(--space-12)">
+        <h2>Wygeneruj własną lekcję z AI</h2>
+        <p>Wpisz temat i cel — otrzymasz konspekt, kartę pracy i zadanie domowe w kilka sekund.</p>
+        <a class="btn btn--primary btn--lg" href="/generator" style="margin-top:var(--space-6)">Otwórz generator ${ICON.arrow}</a>
+      </div>
+      <section class="sources">
+        <h2>Źródła i materiały powiązane</h2>
+        <ul>${o.sources.map((s) => `<li>${s}</li>`).join('')}</ul>
+      </section>
+    </div>
+  </div>
+</section>`;
+}
+
+function articleJsonLdGeneric(o) {
+  const url = BASE_URL + o.canonical;
+  const allQ = o.faq.concat(o.related);
+  const graph = [
+    { '@type': 'BlogPosting', '@id': url, headline: o.title, description: o.description, datePublished: o.dateIso, dateModified: o.dateIso, inLanguage: 'pl-PL', mainEntityOfPage: url, image: BASE_URL + '/assets/og-image.svg', author: { '@type': 'Organization', name: 'ZnaszTo' }, publisher: { '@type': 'Organization', name: 'ZnaszTo', logo: { '@type': 'ImageObject', url: BASE_URL + '/assets/favicon.svg' } } },
+    { '@type': 'FAQPage', '@id': url + '#faq', inLanguage: 'pl-PL', mainEntity: allQ.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
+    { '@type': 'BreadcrumbList', itemListElement: [ { '@type': 'ListItem', position: 1, name: 'Start', item: BASE_URL + '/' }, { '@type': 'ListItem', position: 2, name: 'Blog', item: BASE_URL + '/blog' }, { '@type': 'ListItem', position: 3, name: o.shortTitle, item: url } ] },
+  ];
+  if (o.howTo) graph.push(o.howTo);
+  return `  <script type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', '@graph': graph })}</script>`;
+}
+
+const A_RODO = {
+  canonical: '/blog/rodo-ai-w-szkole',
+  shortTitle: 'AI a RODO w szkole',
+  title: 'AI a RODO w szkole — co nauczyciel musi wiedzieć',
+  description: 'AI a RODO w szkole — przewodnik dla nauczyciela. Jakie dane nie wolno wklejać do chatbota, zasady etyki, zgody i ochrony danych uczniów.',
+  dateLabel: '12 lipca 2026',
+  dateIso: '2026-07-12',
+  readTime: '~4 min',
+  body: `<p>Wykorzystanie sztucznej inteligencji w szkole budzi wiele obaw — a największą jest ochrona danych uczniów. Słusznie: nauczyciel przetwarza dane osobowe małoletnich, co podlega rygorom RODO. Ten przewodnik wyjaśnia, co wolno, czego nie i jak korzystać z AI bezpiecznie.</p>
+<h2>Jakie dane to dane osobowe</h2>
+<p>Dane osobowe to każda informacja pozwalająca zidentyfikować ucznia — imię i nazwisko, PESEL, adres, oceny, informacje o zdrowiu, orzeczenia o potrzebie kształcenia specjalnego, a w pewnych okolicznościach nawet kombinacje danych pozwalające wskazać konkretną osobę.</p>
+<h2>Czego NIE wolno wklejać do chatbota</h2>
+<p>Wpisując tekst do publicznego chatbota (ChatGPT, Copilot, Gemini), wysyłasz go na serwery zewnętrznego dostawcy. Nie wolno tam trafiać:</p>
+<ul class="dashed"><li>imion i nazwisk uczniów wraz z ocenami lub uwagami</li><li>fragmentów dokumentacji pedagogicznej i orzeczeń</li><li>danych zdrowotnych i informacji o specjalnych potrzebach</li><li>zdjęć i nagrań pozwalających zidentyfikować ucznia</li></ul>
+<h2>Zgody i polityka szkoły</h2>
+<p>Zanim wprowadzisz AI do pracy, sprawdź, czy szkoła ma politykę korzystania z AI i narzędzia zatwierdzone przez administratora danych. W wielu przypadkach do przetwarzania danych uczniów przez zewnętrzne narzędzia wymagana jest zgoda rodziców lub opiekunów prawnych.</p>
+<h2>Bezpieczne praktyki — checklist</h2>
+<ul class="dashed"><li>Anonimizuj: opisuj sytuację ogólnie, bez identyfikacji ucznia</li><li>Nie wklejaj danych osobowych do publicznych narzędzi</li><li>Weryfikuj, czy narzędzie ma zgodę na użycie w szkole</li><li>Przeglądaj wygenerowane treści pod kątem danych wrażliwych</li><li>Przestrzegaj polityki szkoły i RODO</li></ul>
+<h2>Jak ZnaszTo pomaga</h2>
+<p><a href="/generator">Generator lekcji ZnaszTo</a> nie wymaga logowania ani podawania danych uczniów — wystarczy temat i cel lekcji. Wprowadzane dane nie są wysyłane na serwer i nie są przechowywane, co minimalizuje ryzyko naruszenia RODO.</p>
+<h2>Podsumowanie</h2>
+<p>AI może wspierać pracę nauczyciela, o ile stosujesz je z świadomością RODO: anonimizujesz dane, nie wklejasz informacji osobowych do publicznych chatbotów i przestrzegasz polityki szkoły.</p>`,
+  faq: [
+    { id: 'czy-moge-wklejac-oceny-do-chatgpt', q: 'Czy mogę wklejać oceny uczniów do ChatGPT?', a: 'Nie. Oceny wraz z imionami to dane osobowe. Nie wklejaj ich do publicznych chatbotów — opisuj sytuację ogólnie.' },
+    { id: 'czy-znaszto-zbiera-dane-uczeniow-rodo', q: 'Czy generator ZnaszTo zbiera dane uczniów?', a: 'Nie. Generator nie wymaga logowania ani podawania danych uczniów — wystarczy temat i cel lekcji, a dane nie są wysyłane na serwer.' },
+    { id: 'czy-trzeba-zgoda-rodzicow-ai', q: 'Czy muszę mieć zgodę rodziców na używanie AI w szkole?', a: 'Zależy od sposobu użycia i polityki szkoły. Jeśli narzędzie przetwarza dane uczniów, zwykle wymagana jest zgoda rodziców lub opiekunów prawnych oraz akceptacja administratora danych.' },
+    { id: 'czy-chatgpt-zgodny-rodo', q: 'Czy ChatGPT jest zgodny z RODO?', a: 'Zależy od wersji i ustawień konta. Wersje Enterprise i edukacyjne oferują lepsze zabezpieczenia, ale domyślnie wpisane dane mogą być przetwarzane przez dostawcę — dlatego nie wklejaj danych uczniów.' },
+  ],
+  related: [
+    { id: 'czy-ai-w-szkole-jest-legalne', q: 'Czy używanie AI w szkole jest legalne?', a: 'Tak, jeśli przestrzegasz RODO i polityki szkoły. Kluczowe to nie przetwarzać danych osobowych uczniów w narzędziach bez odpowiednich zabezpieczeń.' },
+    { id: 'jakie-dane-uczeniow-wrazliwe', q: 'Jakie dane uczniów są szczególnie wrażliwe?', a: 'Dane zdrowotne, orzeczenia o potrzebie kształcenia specjalnego, informacje o trudnościach edukacyjnych — to dane szczególnej kategorii, których nigdy nie wolno wklejać do publicznych chatbotów.' },
+    { id: 'czy-mozna-uzywac-ai-do-oceniania', q: 'Czy można używać AI do oceniania uczniów?', a: 'AI może wspierać tworzenie kryteriów oceniania, ale ostateczna ocena należy do nauczyciela. Nie wprowadzaj danych pozwalających zidentyfikować ucznia do narzędzi zewnętrznych.' },
+    { id: 'jak-zanonimizowac-dane-do-ai', q: 'Jak zanonimizować dane przed użyciem AI?', a: 'Opisuj sytuację ogólnie: „uczeń klasy 5 z trudnościami w czytaniu” zamiast imienia i nazwiska. Usuń wszystkie elementy pozwalające zidentyfikować ucznia.' },
+    { id: 'czy-generator-znaszto-bezpieczny-rodo', q: 'Czy generator ZnaszTo jest bezpieczny pod kątem RODO?', a: 'Tak. Nie wymaga logowania, nie zbiera danych uczniów, a wpisany temat i cel nie są zapisywane na serwerze — generowanie odbywa się w przeglądarce.' },
+  ],
+  sources: [
+    '<a href="/generator">ZnaszTo — generator lekcji AI</a>',
+    '<a href="https://efs.men.gov.pl/wp-content/uploads/2025/12/Zalacznik-nr-10-Ogolne-Standardy-dla-nauczycieli-kompetecje-cyfrowe.pdf" rel="noopener">MEN — Ogólne Standardy kompetencji cyfrowych nauczycieli (PDF)</a>',
+    '<a href="https://www.pcen.gda.pl/files/download/31152/Raport_generatywnaAI_wstep_R_Nielek.pdf" rel="noopener">Raport — Generatywna sztuczna inteligencja w polskiej szkole (PCEN Gdańsk, PDF)</a>',
+  ],
+};
+
+const A_PROMPT = {
+  canonical: '/blog/prompt-engineering-dla-nauczycieli',
+  shortTitle: 'Prompt engineering dla nauczycieli',
+  title: 'Prompt engineering dla nauczycieli — jak pisać skuteczne polecenia do AI',
+  description: 'Prompt engineering dla nauczycieli — struktura dobrego promptu, błędy początkujących i biblioteka gotowych promptów szkolnych.',
+  dateLabel: '12 lipca 2026',
+  dateIso: '2026-07-12',
+  readTime: '~5 min',
+  body: `<p>Prompt engineering to umiejętność pisania poleceń do AI tak, aby uzyskać użyteczną odpowiedź. Dla nauczyciela to kluczowa kompetencja — od jakości promptu zależy, czy otrzymasz gotowy konspekt, czy ogólnikową odpowiedź.</p>
+<h2>Struktura dobrego promptu</h2>
+<p>Dobry prompt do przygotowania lekcji zawiera pięć elementów:</p>
+<ol><li><strong>Rola</strong> — „Jesteś nauczycielem matematyki w klasie 6.”</li><li><strong>Kontekst</strong> — poziom klasy, czas lekcji, dostępne narzędzia.</li><li><strong>Temat</strong> — konkretny, nie ogólny.</li><li><strong>Format wyjścia</strong> — konspekt, karta pracy, quiz.</li><li><strong>Ograniczenia</strong> — np. „bez oceniania uczniów”, „po polsku”.</li></ol>
+<p class="example">„Jesteś nauczycielem historii w klasie 7. Przygotuj 45-minutowy konspekt lekcji o Powstaniu Warszawskim: cel, 4 etapy, metoda pracy grupowej, 5 pytań sprawdzających. Format: konspekt + karta pracy.”</p>
+<h2>Błędy początkujących</h2>
+<ul class="dashed"><li>Zbyt ogólny prompt („napisz lekcję”) → ogólnikowa odpowiedź</li><li>Brak formatu wyjścia → model wybiera losową formę</li><li>Brak ograniczeń → odpowiedź za długa lub nie na temat</li><li>Przyjmowanie pierwszej odpowiedzi bez iteracji</li></ul>
+<h2>Biblioteka promptów szkolnych</h2>
+<p>Oto trzy gotowe szablony, które możesz dostosować:</p>
+<ul class="dashed"><li><strong>Konspekt:</strong> „Jesteś nauczycielem [przedmiot] w klasie [X]. Przygotuj [czas]-minutowy konspekt lekcji o [temat]. Uwzględnij cel, przebieg, metody i kartę pracy.”</li><li><strong>Różnicowanie:</strong> „Przygotuj tę kartę pracy w trzech wersjach trudności: podstawowej, średniej i rozszerzonej, dla klasy [X].”</li><li><strong>Sprawdzenie wiedzy:</strong> „Stwórz 10 pytań sprawdzających z [temat] — 5 zamkniętych i 5 otwartych, z kluczem odpowiedzi.”</li></ul>
+<h2>Jak ZnaszTo upraszcza promptowanie</h2>
+<p><a href="/generator">Generator ZnaszTo</a> stosuje te zasady automatycznie — wpisujesz tylko temat i cel, a system buduje ustrukturyzowany konspekt, kartę pracy i zadanie domowe. To prompt engineering bez nauki promptowania.</p>
+<h2>Podsumowanie</h2>
+<p>Dobry prompt = rola + kontekst + temat + format + ograniczenia. Im precyzyjniejsze polecenie, tym mniej redagowania później — a z generatorem ZnaszTo cały proces sprowadza się do dwóch pól.</p>`,
+  howTo: { '@type': 'HowTo', name: 'Jak napisać dobry prompt do lekcji', inLanguage: 'pl-PL', step: [
+    { '@type': 'HowToStep', position: 1, name: 'Określ rolę i kontekst', text: 'Podaj przedmiot, klasę i czas lekcji, np. „Jesteś nauczycielem matematyki w klasie 6.”' },
+    { '@type': 'HowToStep', position: 2, name: 'Sformułuj temat', text: 'Podaj konkretny temat lekcji, nie ogólny.' },
+    { '@type': 'HowToStep', position: 3, name: 'Zdecyduj o formacie', text: 'Określ format wyjścia: konspekt, karta pracy, quiz.' },
+    { '@type': 'HowToStep', position: 4, name: 'Dodaj ograniczenia', text: 'Wskaż poziom, język i długość odpowiedzi.' },
+    { '@type': 'HowToStep', position: 5, name: 'Generuj i przeglądaj', text: 'Wygeneruj odpowiedź i przejrzyj ją krytycznie przed użyciem.' },
+  ] },
+  faq: [
+    { id: 'co-to-jest-prompt', q: 'Co to jest prompt?', a: 'Prompt to polecenie wpisane do modelu językowego. Jakość odpowiedzi AI zależy głównie od jakości promptu.' },
+    { id: 'ile-promptow-probowac', q: 'Ile promptów warto próbować?', a: 'Warto wypróbować 2–3 warianty i iterować. Pierwsza odpowiedź rzadko jest ostateczna — proś o poprawki i doprecyzowania.' },
+    { id: 'czy-prompt-engineering-trudny', q: 'Czy prompt engineering jest trudny?', a: 'Nie. Zależy od pięciu elementów: rola, kontekst, temat, format, ograniczenia. Z generatorem ZnaszTo cały proces sprowadza się do wpisania tematu i celu.' },
+    { id: 'czy-ai-pamietaj-poprzednie-prompty', q: 'Czy AI pamięta poprzednie prompty w rozmowie?', a: 'Tak, w ramach jednej sesji model pamięta kontekst. Możesz iteracyjnie doprecyzowywać polecenia bez powtarzania całego kontekstu.' },
+  ],
+  related: [
+    { id: 'jak-dlugi-powinien-byc-prompt', q: 'Jak długi powinien być prompt?', a: 'Wystarczająco długi, by zawrzeć rolę, kontekst, temat, format i ograniczenia. Zwykle 2–4 zdania. Zbyt krótki daje ogólnikowe odpowiedzi.' },
+    { id: 'czy-prompt-dziala-w-kazdym-modelu', q: 'Czy ten sam prompt działa w każdym modelu?', a: 'Podobnie, ale modele różnią się stylem. Warto testować prompt w ChatGPT, Copilot i Gemini i dostosować do wybranego narzędzia.' },
+    { id: 'jak-poprosic-o-format', q: 'Jak poprosić AI o konkretny format?', a: 'Wpisz wprost: „Format: konspekt z celem, przebiegiem i kartą pracy” albo „Zwróć wynik jako listę 10 pytań”. Im precyzyjniejszy format, tym mniej redagowania.' },
+    { id: 'czy-prompt-moze-byc-po-polsku', q: 'Czy prompt może być po polsku?', a: 'Tak. Modele językowe dobrze radzą sobie z polskim. Zawsze dodaj ograniczenie „odpowiedz po polsku”, aby uniknąć mieszania języków.' },
+    { id: 'czy-generator-znaszto-uzywa-promptow', q: 'Czy generator ZnaszTo stosuje dobre prompty?', a: 'Tak. Generator buduje ustrukturyzowany konspekt, kartę pracy i zadanie domowe według sprawdzonych zasad — wystarczy podać temat i cel.' },
+  ],
+  sources: [
+    '<a href="/generator">ZnaszTo — generator lekcji AI</a>',
+    '<a href="/llm-w-szkole">Moduł LLM w szkole na ZnaszTo</a>',
+  ],
+};
+
+const A_KARTA = {
+  canonical: '/blog/karta-pracy-z-ai-w-5-minut',
+  shortTitle: 'Karta pracy z AI w 5 minut',
+  title: 'Karta pracy z AI w 5 minut — jak wygenerować i wydrukować materiały dla uczniów',
+  description: 'Karta pracy z AI w 5 minut — krok po kroku, jak wygenerować kartę pracy, konspekt i zadanie domowe i wyeksportować do PDF.',
+  dateLabel: '12 lipca 2026',
+  dateIso: '2026-07-12',
+  readTime: '~3 min',
+  body: `<p>Karta pracy to jedno z najczęściej przygotowywanych materiałów — i jedno z najbardziej czasochłonnych. Z AI zrobisz ją w kilka minut. Ten poradnik pokazuje, jak wygenerować i wydrukować kartę pracy krok po kroku.</p>
+<h2>Czym jest dobra karta pracy</h2>
+<p>Dobra karta pracy ma jasny cel, stopniowaną trudność (od łatwego do trudniejszego zadania), miejsce na odpowiedź i element samoooceny. Powinna być czytelna i gotowa do druku.</p>
+<h2>Krok po kroku: generator → PDF → druk</h2>
+<ol><li>Wejdź na <a href="/generator">generator lekcji ZnaszTo</a>.</li><li>Wpisz temat i cel lekcji, wybierz przedmiot, klasę i czas.</li><li>Kliknij „Wygeneruj lekcję”.</li><li>Przejdź do zakładki „Karta pracy”.</li><li>Kliknij „Drukuj / zapisz jako PDF” i wybierz „Zapisz jako PDF”.</li><li>Wydrukuj lub udostępnij plik uczniom.</li></ol>
+<h2>Przykłady dla różnych poziomów</h2>
+<ul class="dashed"><li><strong>Klasy 1–3:</strong> prosta karta z dużą czcionką, jedno zadanie na stronę.</li><li><strong>Klasy 4–6:</strong> zadania z rosnącą trudnością, miejsce na krótką odpowiedź.</li><li><strong>Klasy 7+:</strong> zadania problemowe, analiza, samooocena.</li></ul>
+<h2>Podsumowanie</h2>
+<p>Generator ZnaszTo tworzy kartę pracy dopasowaną do tematu, klasy i czasu — gotową do druku lub PDF w kilka minut, bez logowania.</p>`,
+  howTo: { '@type': 'HowTo', name: 'Jak wygenerować kartę pracy z AI', inLanguage: 'pl-PL', step: [
+    { '@type': 'HowToStep', position: 1, name: 'Otwórz generator', text: 'Wejdź na generator lekcji ZnaszTo.' },
+    { '@type': 'HowToStep', position: 2, name: 'Wpisz temat i cel', text: 'Podaj temat lekcji i jej główny cel, wybierz przedmiot, klasę i czas trwania.' },
+    { '@type': 'HowToStep', position: 3, name: 'Wygeneruj lekcję', text: 'Kliknij „Wygeneruj lekcję”, aby utworzyć konspekt, kartę pracy i zadanie domowe.' },
+    { '@type': 'HowToStep', position: 4, name: 'Przejdź do karty pracy', text: 'Wybierz zakładkę „Karta pracy”.' },
+    { '@type': 'HowToStep', position: 5, name: 'Eksport do PDF', text: 'Kliknij „Drukuj / zapisz jako PDF” i zapisz plik.' },
+  ] },
+  faq: [
+    { id: 'czy-karta-pracy-z-ai-jest-darmowa', q: 'Czy karta pracy z AI jest darmowa?', a: 'Tak. Generator ZnaszTo jest darmowy, nie wymaga logowania, a wynik eksportujesz do PDF bez opłat.' },
+    { id: 'czy-moge-edytowac-wygenerowana-karte', q: 'Czy mogę edytować wygenerowaną kartę pracy?', a: 'Tak. Wygenerowaną kartę przejrzyj i dostosuj do swojej klasy — to punkt wyjścia, nie gotowiec. Eksport do PDF umożliwia też drobne poprawki przed drukiem.' },
+    { id: 'czy-karta-pracy-dostosowana-do-klasy', q: 'Czy karta pracy jest dostosowana do poziomu klasy?', a: 'Tak. W generatorze wybierasz poziom klasy, a zadania są formułowane adekwatnie do etapu edukacyjnego.' },
+    { id: 'czy-potrzebuje-logowania-do-karty-pracy', q: 'Czy potrzebuję logowania, by zrobić kartę pracy?', a: 'Nie. Generator ZnaszTo działa bez logowania i bez rejestracji — wpisujesz temat i cel, a wynik od razu eksportujesz do PDF.' },
+  ],
+  related: [
+    { id: 'jak-wydrukowac-karte-pracy-z-pdf', q: 'Jak wydrukować kartę pracy z PDF?', a: 'Po wyeksportowaniu lekcji do PDF otwórz plik i wybierz Drukuj. Możesz też zapisać PDF i udostępnić go uczniom elektronicznie.' },
+    { id: 'czy-karta-pracy-ma-miejsce-na-odpowiedzi', q: 'Czy karta pracy ma miejsce na odpowiedzi?', a: 'Tak. Wygenerowana karta zawiera puste pola pod każdym zadaniem, gotowe do wypełnienia przez ucznia lub do druku.' },
+    { id: 'czy-moge-zrobic-karte-dla-grup', q: 'Czy mogę zrobić kartę pracy dla grup?', a: 'Tak. Generator tworzy uniwersalną kartę pracy, którą możesz wykorzystać indywidualnie lub w grupach — dostosuj instrukcję do formy pracy.' },
+    { id: 'ile-zadan-w-karcie-pracy', q: 'Ile zadań zawiera karta pracy?', a: 'Standardowo cztery zadania o rosnącej trudności — wprowadzenie, ćwiczenie, zastosowanie i wnioski — plus element samoooceny.' },
+    { id: 'czy-karta-pracy-zawiera-samoocene', q: 'Czy karta pracy zawiera samooocenę?', a: 'Tak. Na końcu karty znajduje się prosty element samoooceny, który pomaga uczniowi reflaktować nad własną pracą.' },
+  ],
+  sources: [
+    '<a href="/generator">ZnaszTo — generator lekcji AI</a>',
+    '<a href="/scenariusze">Scenariusze lekcji na ZnaszTo</a>',
+  ],
+};
+
+const GLOSSARY = [
+  { term: 'Sztuczna inteligencja (AI)', def: 'Systemy, które wykonują zadania wymagające ludzkiego myślenia — np. rozpoznawanie tekstu, generowanie odpowiedzi, analiza danych.' },
+  { term: 'LLM (Large Language Model)', def: 'Duży model językowy — program uczony na ogromnych zbiorach tekstu, który generuje i rozumie język naturalny, np. ChatGPT, Gemini, Copilot.' },
+  { term: 'Prompt', def: 'Polecenie wpisane do modelu językowego. Jakość odpowiedzi AI zależy głównie od jakości promptu.' },
+  { term: 'Prompt engineering', def: 'Umiejętność pisania skutecznych poleceń do AI — z uwzględnieniem roli, kontekstu, tematu, formatu i ograniczeń.' },
+  { term: 'Halucynacja AI', def: 'Zjawisko, w którym model generuje wiarygodnie brzmiącą, ale nieprawdziwą informację lub zmyślone źródło. Dlatego zawsze weryfikuj fakty.' },
+  { term: 'Kontekst', def: 'Informacje podane w prompcie, które model uwzględnia w odpowiedzi — np. poziom klasy, przedmiot, czas lekcji.' },
+  { term: 'Token', def: 'Fragment tekstu (słowo lub część słowa), na którym model przetwarza język. Liczba tokenów wpływa na długość i koszt odpowiedzi.' },
+  { term: 'Fine-tuning', def: 'Dostosowanie wytrenowanego modelu do konkretnego zadania na własnych danych — poza zasięgiem większości nauczycieli, ale warto znać pojęcie.' },
+  { term: 'Generatywna AI', def: 'AI, która tworzy nowe treści — tekst, obrazy, dźwięk — w odpowiedzi na polecenie, w przeciwieństwie do AI tylko klasyfikującej dane.' },
+  { term: 'Chatbot', def: 'Program prowadzący rozmowę w języku naturalnym, np. ChatGPT. W edukacji pomaga generować materiały, ale nie zastępuje nauczyciela.' },
+  { term: 'TIK', def: 'Technologie Informacyjno-Komunikacyjne — narzędzia cyfrowe wspomagające nauczanie: tablice, prezentacje, arkusze, wideokonferencje, platformy edukacyjne.' },
+  { term: 'RODO', def: 'Ogólne Rozporządzenie o Ochronie Danych — unijne prawo chroniące dane osobowe, w tym danych uczniów. Wymaga anonimizacji przy korzystaniu z AI.' },
+  { term: 'Podstawa programowa', def: 'Oficjalny dokument MEN określający wymagane treści kształcenia dla danego przedmiotu i etapu. Materiały z AI muszą być z nią zgodne.' },
+  { term: 'Samooocena', def: 'Element karty pracy, w którym uczeń ocenia własny postęp — rozwija refaktię i odpowiedzialność za naukę.' },
+];
+
+function glossaryContent() {
+  const items = GLOSSARY.map((g) => `<dt id="${g.term.split(' ')[0].toLowerCase()}">${g.term}</dt><dd>${g.def}</dd>`).join('\n      ');
+  return `<section class="section">
+  <div class="container container-narrow">
+    <span class="eyebrow">Słownik</span>
+    <h1 style="font-size:var(--text-xl);margin-top:var(--space-3)">Słownik AI dla nauczycieli</h1>
+    <p class="lead" style="margin-top:var(--space-4)">Najważniejsze pojęcia ze świata sztucznej inteligencji i cyfrowych kompetencji — zebrane w jednym miejscu. Przydatne przy korzystaniu z AI w szkole.</p>
+    <dl class="prose" style="margin-top:var(--space-8);display:grid;gap:var(--space-3)">
+      ${items}
+    </dl>
+    <div class="cta-band" style="margin-top:var(--space-12)">
+      <h2>Przejdź od teorii do praktyki</h2>
+      <p>Wygeneruj pierwszą lekcję z AI — bez logowania, po polsku.</p>
+      <a class="btn btn--primary btn--lg" href="/generator" style="margin-top:var(--space-6)">Otwórz generator ${ICON.arrow}</a>
+    </div>
+  </div>
+</section>`;
+}
+
+function glossaryJsonLd() {
+  const url = BASE_URL + '/slownik-ai';
+  return `  <script type="application/ld+json">${JSON.stringify({
+    '@context': 'https://schema.org',
+    '@graph': [
+      { '@type': 'DefinedTermSet', '@id': url, name: 'Słownik AI dla nauczycieli', inLanguage: 'pl-PL', url, hasDefinedTerm: GLOSSARY.map((g) => ({ '@type': 'DefinedTerm', name: g.term, description: g.def })) },
+    ],
+  })}</script>`;
+}
+
+function contactContent() {
+  return `<section class="section">
+  <div class="container container-narrow">
+    <span class="eyebrow">Kontakt</span>
+    <h1 style="font-size:var(--text-xl);margin-top:var(--space-3)">Napisz do nas</h1>
+    <p class="lead" style="margin-top:var(--space-4)">Masz pytanie, pomysł na artykuł lub chcesz współpracować? Napisz do nas. Czytamy każdą wiadomość.</p>
+    <form class="gen-form" style="margin-top:var(--space-8)" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="contact">
+      <p class="sr-only"><label>Nie wypełniaj tego pola: <input name="bot-field"></label></p>
+      <div class="field"><label for="imie">Imię</label><input type="text" id="imie" name="imie" required></div>
+      <div class="field"><label for="email">E-mail</label><input type="email" id="email" name="email" required></div>
+      <div class="field"><label for="wiadomosc">Wiadomość</label><textarea id="wiadomosc" name="wiadomosc" required></textarea></div>
+      <div><button type="submit" class="btn btn--primary btn--lg">Wyślij wiadomość ${ICON.arrow}</button></div>
+    </form>
+    <p style="margin-top:var(--space-6)">Preferujesz e-mail? Napisz na: <a href="mailto:kontakt@znaszto.netlify.app">kontakt@znaszto.netlify.app</a></p>
+    <section class="faq" style="margin-top:var(--space-12)" aria-labelledby="faq-heading">
+      <h2 id="faq-heading" style="font-size:var(--text-xl);margin-bottom:var(--space-5)">Najczęściej zadawane pytania</h2>
+      ${[
+        { id: 'czy-odpisujecie-szybko', q: 'Jak szybko odpowiadacie na wiadomości?', a: 'Staramy się odpowiadać w ciągu 2–3 dni roboczych.' },
+        { id: 'czy-znaszto-jest-darmowe-k', q: 'Czy korzystanie z ZnaszTo jest darmowe?', a: 'Tak. Generator i materiały są darmowe i nie wymagają logowania.' },
+        { id: 'czy-moge-zaproponowac-temat', q: 'Czy mogę zaproponować temat artykułu lub funkcję?', a: 'Oczywiście — napisz do nas przez formularz powyżej. Chętnie tworzymy materiały odpowiadające potrzebom nauczycieli.' },
+      ].map(faqItem).join('\n      ')}
+    </section>
+  </div>
+</section>`;
+}
+
 function pages() {
   return [
     {
@@ -580,6 +842,24 @@ function pages() {
         <p>Praktyczny przewodnik krok po kroku: prompty, przykłady, ograniczenia i darmowy generator lekcji AI po polsku.</p>
         <span class="card__arrow">Czytaj artykuł ${ICON.arrow}</span>
       </a>
+      <a class="card" href="/blog/rodo-ai-w-szkole">
+        <span class="card__icon" aria-hidden="true">${ICON.shield}</span>
+        <h3>AI a RODO w szkole — co nauczyciel musi wiedzieć</h3>
+        <p>Jakie dane nie wolno wklejać do chatbota, zasady etyki, zgody i ochrony danych uczniów.</p>
+        <span class="card__arrow">Czytaj artykuł ${ICON.arrow}</span>
+      </a>
+      <a class="card" href="/blog/prompt-engineering-dla-nauczycieli">
+        <span class="card__icon" aria-hidden="true">${ICON.brain}</span>
+        <h3>Prompt engineering dla nauczycieli — jak pisać skuteczne polecenia do AI</h3>
+        <p>Struktura dobrego promptu, błędy początkujących i biblioteka gotowych promptów szkolnych.</p>
+        <span class="card__arrow">Czytaj artykuł ${ICON.arrow}</span>
+      </a>
+      <a class="card" href="/blog/karta-pracy-z-ai-w-5-minut">
+        <span class="card__icon" aria-hidden="true">${ICON.file}</span>
+        <h3>Karta pracy z AI w 5 minut — jak wygenerować i wydrukować</h3>
+        <p>Krok po kroku: jak wygenerować kartę pracy, konspekt i zadanie domowe i wyeksportować do PDF.</p>
+        <span class="card__arrow">Czytaj artykuł ${ICON.arrow}</span>
+      </a>
     </div>
   </div>
 </section>`,
@@ -593,6 +873,53 @@ function pages() {
       activeNav: '/blog',
       jsonld: articleJsonLd(),
       content: articleContent(),
+    },
+    {
+      path: 'blog/rodo-ai-w-szkole.html',
+      title: A_RODO.title + ' | ZnaszTo',
+      description: A_RODO.description,
+      canonical: A_RODO.canonical,
+      ogType: 'article',
+      activeNav: '/blog',
+      jsonld: articleJsonLdGeneric(A_RODO),
+      content: articleContentGeneric(A_RODO),
+    },
+    {
+      path: 'blog/prompt-engineering-dla-nauczycieli.html',
+      title: A_PROMPT.title + ' | ZnaszTo',
+      description: A_PROMPT.description,
+      canonical: A_PROMPT.canonical,
+      ogType: 'article',
+      activeNav: '/blog',
+      jsonld: articleJsonLdGeneric(A_PROMPT),
+      content: articleContentGeneric(A_PROMPT),
+    },
+    {
+      path: 'blog/karta-pracy-z-ai-w-5-minut.html',
+      title: A_KARTA.title + ' | ZnaszTo',
+      description: A_KARTA.description,
+      canonical: A_KARTA.canonical,
+      ogType: 'article',
+      activeNav: '/blog',
+      jsonld: articleJsonLdGeneric(A_KARTA),
+      content: articleContentGeneric(A_KARTA),
+    },
+    {
+      path: 'slownik-ai.html',
+      title: 'Słownik AI dla nauczycieli — ZnaszTo',
+      description: 'Słownik AI dla nauczycieli: LLM, prompt, halucynacja, fine-tuning, RODO i inne pojęcia ze świata sztucznej inteligencji w szkole.',
+      canonical: '/slownik-ai',
+      activeNav: '/slownik-ai',
+      jsonld: glossaryJsonLd(),
+      content: glossaryContent(),
+    },
+    {
+      path: 'kontakt.html',
+      title: 'Kontakt — ZnaszTo',
+      description: 'Skontaktuj się z platformą ZnaszTo — pytania, współpraca, materiały edukacyjne dla nauczycieli.',
+      canonical: '/kontakt',
+      activeNav: '/kontakt',
+      content: contactContent(),
     },
   ];
 }
@@ -770,6 +1097,11 @@ const urls = [
   ['/wspolpraca', '0.7', 'weekly'],
   ['/blog', '0.7', 'weekly'],
   ['/blog/jak-uzywac-chatgpt-do-przygotowania-lekcji', '0.8', 'weekly'],
+  ['/blog/rodo-ai-w-szkole', '0.8', 'weekly'],
+  ['/blog/prompt-engineering-dla-nauczycieli', '0.8', 'weekly'],
+  ['/blog/karta-pracy-z-ai-w-5-minut', '0.8', 'weekly'],
+  ['/slownik-ai', '0.7', 'monthly'],
+  ['/kontakt', '0.5', 'monthly'],
   ['/o-projekcie', '0.6', 'monthly'],
   ['/polityka-prywatnosci', '0.4', 'monthly'],
   ['/regulamin', '0.4', 'monthly'],
