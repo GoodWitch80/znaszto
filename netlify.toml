@@ -1,0 +1,44 @@
+[build]
+  publish = "."
+  command = ""
+
+[[redirects]]
+  from = "/generator.html"
+  to = "/generator"
+  status = 301
+[[redirects]]
+  from = "/narzedzia-tik.html"
+  to = "/narzedzia-tik"
+  status = 301
+[[redirects]]
+  from = "/llm-w-szkole.html"
+  to = "/llm-w-szkole"
+  status = 301
+[[redirects]]
+  from = "/ai-w-pracy.html"
+  to = "/ai-w-pracy"
+  status = 301
+[[redirects]]
+  from = "/scenariusze.html"
+  to = "/scenariusze"
+  status = 301
+[[redirects]]
+  from = "/wspolpraca.html"
+  to = "/wspolpraca"
+  status = 301
+[[redirects]]
+  from = "/o-projekcie.html"
+  to = "/o-projekcie"
+  status = 301
+[[redirects]]
+  from = "/polityka-prywatnosci.html"
+  to = "/polityka-prywatnosci"
+  status = 301
+[[redirects]]
+  from = "/regulamin.html"
+  to = "/regulamin"
+  status = 301
+[[redirects]]
+  from = "/blog.html"
+  to = "/blog"
+  status = 301
