@@ -54,7 +54,7 @@ function layout(opts) {
     return `<a href="${n.href}"${cur}>${n.label}</a>`;
   }).join('\n          ');
 
-  const fullUrl = BASE_URL + (canonical === '/' ? '/' : canonical.replace(/\/$/, '') + '/');
+  const fullUrl = BASE_URL + canonical;
   const assetBase = pagePath.includes('/') ? '../assets/' : 'assets/';
 
   return `<!DOCTYPE html>
@@ -829,6 +829,19 @@ function opiniaContent() {
 </section>`;
 }
 
+function generatorJsonLd() {
+  const url = BASE_URL + '/generator';
+  return `  <script type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', '@graph': [
+    { '@type': 'WebApplication', name: 'Generator lekcji AI — ZnaszTo', url: url, applicationCategory: 'EducationalApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'PLN' }, inLanguage: 'pl-PL', description: 'Darmowy generator lekcji dla nauczycieli — konspekt, karta pracy i zadanie domowe po polsku.' },
+    { '@type': 'HowTo', name: 'Jak wygenerować lekcję z AI', inLanguage: 'pl-PL', step: [
+      { '@type': 'HowToStep', position: 1, name: 'Wpisz temat i cel', text: 'Podaj temat lekcji i jej główny cel.' },
+      { '@type': 'HowToStep', position: 2, name: 'Wybierz przedmiot i klasę', text: 'Dostosuj poziom i czas trwania lekcji.' },
+      { '@type': 'HowToStep', position: 3, name: 'Wygeneruj', text: 'Kliknij „Wygeneruj lekcję”, aby utworzyć konspekt, kartę pracy i zadanie domowe.' },
+      { '@type': 'HowToStep', position: 4, name: 'Eksport do PDF', text: 'Kliknij „Drukuj / zapisz jako PDF” i zapisz wynik.' },
+    ] },
+  ] })}</script>`;
+}
+
 function pages() {
   return [
     {
@@ -844,6 +857,7 @@ function pages() {
       title: 'Generator lekcji AI — ZnaszTo',
       description: 'Darmowy generator lekcji dla nauczycieli. Wpisz temat i cel, a AI przygotuje gotowy konspekt, kartę pracy i zadanie domowe po polsku.',
       canonical: '/generator',
+      jsonld: generatorJsonLd(),
       content: generatorContent(),
     },
     {

@@ -6,39 +6,74 @@
   from = "/generator.html"
   to = "/generator"
   status = 301
+  force = true
+[[redirects]]
+  from = "/narzedzia.html"
+  to = "/narzedzia"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/generator-kart-pracy.html"
+  to = "/generator-kart-pracy"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/generator-opinii.html"
+  to = "/generator-opinii"
+  status = 301
+  force = true
 [[redirects]]
   from = "/narzedzia-tik.html"
   to = "/narzedzia-tik"
   status = 301
+  force = true
 [[redirects]]
   from = "/llm-w-szkole.html"
   to = "/llm-w-szkole"
   status = 301
+  force = true
 [[redirects]]
   from = "/ai-w-pracy.html"
   to = "/ai-w-pracy"
   status = 301
+  force = true
 [[redirects]]
   from = "/scenariusze.html"
   to = "/scenariusze"
   status = 301
+  force = true
 [[redirects]]
   from = "/wspolpraca.html"
   to = "/wspolpraca"
   status = 301
+  force = true
 [[redirects]]
   from = "/o-projekcie.html"
   to = "/o-projekcie"
   status = 301
+  force = true
 [[redirects]]
   from = "/polityka-prywatnosci.html"
   to = "/polityka-prywatnosci"
   status = 301
+  force = true
 [[redirects]]
   from = "/regulamin.html"
   to = "/regulamin"
   status = 301
+  force = true
 [[redirects]]
   from = "/blog.html"
   to = "/blog"
   status = 301
+  force = true
+[[redirects]]
+  from = "/slownik-ai.html"
+  to = "/slownik-ai"
+  status = 301
+  force = true
+[[redirects]]
+  from = "/kontakt.html"
+  to = "/kontakt"
+  status = 301
+  force = true
