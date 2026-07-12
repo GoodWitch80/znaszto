@@ -10,7 +10,7 @@ const OUT = __dirname;
 
 const NAV = [
   { href: '/', label: 'Start' },
-  { href: '/generator', label: 'Generator' },
+  { href: '/narzedzia', label: 'Narzędzia' },
   { href: '/narzedzia-tik', label: 'Narzędzia TIK' },
   { href: '/llm-w-szkole', label: 'LLM w szkole' },
   { href: '/scenariusze', label: 'Scenariusze' },
@@ -120,6 +120,8 @@ ${content}
         <ul>
           <li><a href="/">Start</a></li>
           <li><a href="/generator">Generator lekcji AI</a></li>
+          <li><a href="/generator-kart-pracy">Generator kart pracy</a></li>
+          <li><a href="/generator-opinii">Generator opinii</a></li>
           <li><a href="/scenariusze">Scenariusze lekcji</a></li>
           <li><a href="/blog">Blog</a></li>
           <li><a href="/o-projekcie">O projekcie</a></li>
@@ -368,6 +370,29 @@ function generatorContent() {
         <button type="button" class="btn btn--primary" onclick="window.print()">${ICON.file} Drukuj / zapisz jako PDF</button>
         <a class="btn btn--ghost" href="/scenariusze">Zobacz gotowe scenariusze</a>
       </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:var(--color-surface-offset)">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Więcej narzędzi</span>
+      <h2>Inne darmowe narzędzia</h2>
+    </div>
+    <div class="grid grid--2">
+      <a class="card" href="/generator-kart-pracy">
+        <span class="card__icon" aria-hidden="true">${ICON.file}</span>
+        <h3>Generator kart pracy</h3>
+        <p>Karta pracy z zadaniami o rosnącej trudności, gotowa do druku i PDF.</p>
+        <span class="card__arrow">Otwórz ${ICON.arrow}</span>
+      </a>
+      <a class="card" href="/generator-opinii">
+        <span class="card__icon" aria-hidden="true">${ICON.shield}</span>
+        <h3>Generator opinii i obserwacji</h3>
+        <p>Opinie, wnioski do PPP i karty obserwacji dla nauczycieli, pedagogów i psychologów szkolnych.</p>
+        <span class="card__arrow">Otwórz ${ICON.arrow}</span>
+      </a>
     </div>
   </div>
 </section>`;
@@ -657,6 +682,153 @@ function contactContent() {
 </section>`;
 }
 
+function narzedziaContent() {
+  return `<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Narzędzia</span>
+      <h1>Darmowe narzędzia AI dla nauczycieli</h1>
+      <p>Wszystkie narzędzia działają w przeglądarce — bez logowania, bez wysyłania danych, z eksportem do PDF.</p>
+    </div>
+    <div class="grid grid--3">
+      <a class="card" href="/generator">
+        <span class="card__icon" aria-hidden="true">${ICON.wand}</span>
+        <h3>Generator lekcji AI</h3>
+        <p>Gotowy konspekt, karta pracy i zadanie domowe — po polsku, w kilka sekund.</p>
+        <span class="card__arrow">Otwórz ${ICON.arrow}</span>
+      </a>
+      <a class="card" href="/generator-kart-pracy">
+        <span class="card__icon" aria-hidden="true">${ICON.file}</span>
+        <h3>Generator kart pracy</h3>
+        <p>Karta pracy z zadaniami o rosnącej trudności, gotowa do druku i PDF.</p>
+        <span class="card__arrow">Otwórz ${ICON.arrow}</span>
+      </a>
+      <a class="card" href="/generator-opinii">
+        <span class="card__icon" aria-hidden="true">${ICON.shield}</span>
+        <h3>Generator opinii i obserwacji</h3>
+        <p>Opinie, wnioski do PPP i karty obserwacji dla nauczycieli, pedagogów i psychologów szkolnych.</p>
+        <span class="card__arrow">Otwórz ${ICON.arrow}</span>
+      </a>
+    </div>
+  </div>
+</section>`;
+}
+
+function kartaPracyContent() {
+  return `<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Narzędzie</span>
+      <h1>Generator kart pracy</h1>
+      <p class="lead" style="margin-inline:auto">Wygeneruj kartę pracy z zadaniami o rosnącej trudności — gotową do druku lub PDF. Za darmo, bez logowania, dane nie są nigdzie wysyłane.</p>
+    </div>
+    <form class="gen-form" id="kp-form" novalidate>
+      <div class="field">
+        <label for="kp-temat">Temat karty pracy *</label>
+        <input type="text" id="kp-temat" name="temat" required placeholder="Np. rozpoznawanie rzeczownika">
+      </div>
+      <div class="form-row">
+        <div class="field">
+          <label for="kp-przedmiot">Przedmiot</label>
+          <select id="kp-przedmiot" name="przedmiot">
+            <option value="">— wybierz —</option>
+            <option>Język polski</option><option>Matematyka</option><option>Przyroda / Biologia</option>
+            <option>Fizyka / Chemia</option><option>Historia / WOS</option><option>Język obcy</option>
+            <option>Informatyka</option><option>Geografia</option><option>Inny</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="kp-klasa">Poziom klasy</label>
+          <select id="kp-klasa" name="klasa">
+            <option value="">— wybierz —</option>
+            <option>Edukacja wczesnoszkolna (1–3)</option>
+            <option>Klasy 4–6</option><option>Klasy 7–8</option>
+            <option>Szkoła ponadpodstawowa</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="field">
+          <label for="kp-liczba">Liczba zadań</label>
+          <select id="kp-liczba" name="liczba">
+            <option value="3">3</option><option value="4" selected>4</option><option value="5">5</option><option value="6">6</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="kp-typ">Typ zadań</label>
+          <select id="kp-typ" name="typ">
+            <option value="mieszane" selected>Mieszane (zalecane)</option>
+            <option value="praktyczne">Ćwiczenia praktyczne</option>
+            <option value="pytania">Pytania otwarte</option>
+            <option value="luki">Uzupełnianie luk</option>
+          </select>
+        </div>
+      </div>
+      <div><button type="submit" class="btn btn--primary btn--lg">${ICON.wand} Wygeneruj kartę pracy</button></div>
+    </form>
+    <div class="gen-output" id="kp-out" aria-live="polite">
+      <div class="gen-panel active" id="kp-content"></div>
+      <div class="gen-actions">
+        <button type="button" class="btn btn--primary" onclick="window.print()">${ICON.file} Drukuj / zapisz jako PDF</button>
+        <a class="btn btn--ghost" href="/generator">Generator lekcji AI</a>
+      </div>
+    </div>
+  </div>
+</section>`;
+}
+
+function opiniaContent() {
+  return `<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Narzędzie</span>
+      <h1>Generator opinii i obserwacji</h1>
+      <p class="lead" style="margin-inline:auto">Szablony opinii i kart obserwacji dla nauczycieli, pedagogów szkolnych i psychologów szkolnych. Gotowe do edycji i druku, z eksportem do PDF.</p>
+    </div>
+    <div class="callout-card" style="background:var(--color-warning-highlight);border-color:var(--color-border);margin-bottom:var(--space-6);max-width:none">
+      <p style="color:var(--color-text);margin:0"><strong>${ICON.shield} Ochrona danych (RODO):</strong> Wprowadzaj inicjał lub pseudonim ucznia, nie pełne dane osobowe. Generator działa w przeglądarce — wpisane dane nie są wysyłane ani zapisywane.</p>
+    </div>
+    <form class="gen-form" id="op-form" novalidate>
+      <div class="field">
+        <label for="op-typ">Typ dokumentu *</label>
+        <select id="op-typ" name="typ" required>
+          <option value="opinia-o-uczniu">Opinia o uczniu</option>
+          <option value="wniosek-ppp">Wniosek o badanie w Poradni Psychologiczno-Pedagogologicznej</option>
+          <option value="opinia-grupa">Opinia o funkcjonowaniu ucznia w grupie</option>
+          <option value="karta-obserwacji">Karta obserwacji ucznia</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <div class="field"><label for="op-inicjal">Inicjał / pseudonim ucznia</label><input type="text" id="op-inicjal" name="inicjal" placeholder="Np. K. (nie wpisuj nazwiska)"></div>
+        <div class="field"><label for="op-klasa">Klasa</label><input type="text" id="op-klasa" name="klasa" placeholder="Np. 5"></div>
+      </div>
+      <div class="field"><label for="op-cel">Cel opinii</label><textarea id="op-cel" name="cel" placeholder="Dlaczego sporządzasz opinię? Np. wniosek o dostosowanie wymagań edukacyjnych."></textarea></div>
+      <div class="field"><label for="op-obserwacje">Obserwacje i funkcjonowanie ucznia</label><textarea id="op-obserwacje" name="obserwacje" placeholder="Jak uczeń funkcjonuje na zajęciach, w relacjach rówieśniczych, w sytuacjach trudnych?"></textarea></div>
+      <div class="field"><label for="op-mocne">Mocne strony i zasoby ucznia</label><textarea id="op-mocne" name="mocne" placeholder="Zainteresowania, umiejętności, na których można budować."></textarea></div>
+      <div class="field"><label for="op-obszary">Obszary wymagające wsparcia</label><textarea id="op-obszary" name="obszary" placeholder="Trudności, potrzeby, obszary do rozwoju."></textarea></div>
+      <div class="field"><label for="op-zalecenia">Zalecenia i rekomendacje</label><textarea id="op-zalecenia" name="zalecenia" placeholder="Formy i metody pracy, działania specjalistyczne."></textarea></div>
+      <div class="field">
+        <label for="op-wyst">Wystawiający</label>
+        <select id="op-wyst" name="wyst">
+          <option>Nauczyciel wychowawca</option>
+          <option>Pedagog szkolny</option>
+          <option>Psycholog szkolny</option>
+          <option>Nauczyciel</option>
+        </select>
+      </div>
+      <div><button type="submit" class="btn btn--primary btn--lg">${ICON.wand} Wygeneruj dokument</button></div>
+    </form>
+    <div class="gen-output" id="op-out" aria-live="polite">
+      <div class="gen-panel active" id="op-content"></div>
+      <div class="gen-actions">
+        <button type="button" class="btn btn--primary" onclick="window.print()">${ICON.file} Drukuj / zapisz jako PDF</button>
+        <a class="btn btn--ghost" href="/narzedzia">Inne narzędzia</a>
+      </div>
+    </div>
+  </div>
+</section>`;
+}
+
 function pages() {
   return [
     {
@@ -673,6 +845,30 @@ function pages() {
       description: 'Darmowy generator lekcji dla nauczycieli. Wpisz temat i cel, a AI przygotuje gotowy konspekt, kartę pracy i zadanie domowe po polsku.',
       canonical: '/generator',
       content: generatorContent(),
+    },
+    {
+      path: 'narzedzia.html',
+      title: 'Narzędzia AI dla nauczycieli — ZnaszTo',
+      description: 'Darmowe narzędzia AI dla nauczycieli: generator lekcji, generator kart pracy i generator opinii oraz obserwacji. Bez logowania, z eksportem do PDF.',
+      canonical: '/narzedzia',
+      activeNav: '/narzedzia',
+      content: narzedziaContent(),
+    },
+    {
+      path: 'generator-kart-pracy.html',
+      title: 'Generator kart pracy — ZnaszTo',
+      description: 'Darmowy generator kart pracy dla nauczycieli. Wybierz temat, liczbę i typ zadań, a otrzymasz kartę pracy gotową do druku lub PDF.',
+      canonical: '/generator-kart-pracy',
+      activeNav: '/narzedzia',
+      content: kartaPracyContent(),
+    },
+    {
+      path: 'generator-opinii.html',
+      title: 'Generator opinii i obserwacji — ZnaszTo',
+      description: 'Generator szablonów opinii, wniosków do PPP i kart obserwacji dla nauczycieli, pedagogów szkolnych i psychologów szkolnych. Z eksportem do PDF.',
+      canonical: '/generator-opinii',
+      activeNav: '/narzedzia',
+      content: opiniaContent(),
     },
     {
       path: 'narzedzia-tik.html',
@@ -1090,6 +1286,9 @@ PAGES.forEach((p) => {
 const urls = [
   ['/', '1.0', 'weekly'],
   ['/generator', '0.9', 'weekly'],
+  ['/narzedzia', '0.9', 'weekly'],
+  ['/generator-kart-pracy', '0.8', 'weekly'],
+  ['/generator-opinii', '0.8', 'weekly'],
   ['/narzedzia-tik', '0.8', 'weekly'],
   ['/llm-w-szkole', '0.8', 'weekly'],
   ['/ai-w-pracy', '0.8', 'weekly'],

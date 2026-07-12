@@ -271,3 +271,103 @@
       '<li>estetyka i terminowość</li></ul>';
   }
 })();
+
+  /* ---------- Worksheet generator (karty pracy) ---------- */
+  (function () {
+    var f = document.getElementById('kp-form');
+    if (!f) return;
+    var out = document.getElementById('kp-out');
+    f.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var temat = val('kp-temat');
+      if (!temat) return;
+      var przedmiot = val('kp-przedmiot');
+      var klasa = val('kp-klasa');
+      var liczba = parseInt(val('kp-liczba') || '4', 10);
+      var typ = val('kp-typ');
+      render(buildTasks(temat, liczba, typ), temat, przedmiot, klasa);
+      out.classList.add('active');
+      out.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+    function val(id) { var el = document.getElementById(id); return el ? el.value.trim() : ''; }
+    function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+    function cap(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
+    function buildTasks(temat, n, typ) {
+      var types = typ === 'mieszane' ? ['praktyczne', 'pytania', 'luki'] : [typ];
+      var arr = [];
+      for (var i = 0; i < n; i++) arr.push({ n: i + 1, type: types[i % types.length] });
+      return arr;
+    }
+    function typeLabel(t) {
+      return t === 'praktyczne' ? 'Ćwiczenie praktyczne' : t === 'pytania' ? 'Pytanie otwarte' : t === 'luki' ? 'Uzupełnianie luk' : 'Zadanie';
+    }
+    function taskText(t, temat) {
+      if (t === 'praktyczne') return 'Wykonaj ćwiczenie praktyczne związane z tematem „' + esc(temat) + '”. Pokaż kolejne kroki swojego rozumowania i zapisz wynik.';
+      if (t === 'pytania') return 'Odpowiedz własnymi słowami na pytanie: Wyjaśnij, co rozumiesz przez pojęcie „' + esc(temat) + '”, i podaj przykład z życia codziennego.';
+      if (t === 'luki') return 'Uzupełnij brakujące słowa w zdaniach dotyczących tematu „' + esc(temat) + '”. (Miejsca luk zaznacz kreską.)';
+      return 'Zadanie związane z tematem: ' + esc(temat) + '.';
+    }
+    function render(tasks, temat, przedmiot, klasa) {
+      var html = '<h3>Karta pracy ucznia</h3>';
+      html += '<p class="gen-meta">Imię i nazwisko: ………………………  Klasa: ' + esc(klasa || '—') + '  ·  Data: ………………………</p>';
+      html += '<h4>Temat: ' + esc(cap(temat)) + '</h4>';
+      html += '<p><strong>Instrukcja:</strong> Wykonaj poniższe zadania samodzielnie lub w grupie. Zapisuj odpowiedzi czytelnie w wyznaczonych miejscach.</p>';
+      tasks.forEach(function (t) {
+        html += '<h4>Zadanie ' + t.n + ' — ' + typeLabel(t.type) + '</h4>';
+        html += '<p>' + taskText(t.type, temat) + '</p>';
+        html += '<p style="border-bottom:1px solid var(--color-divider);min-height:70px"></p>';
+      });
+      html += '<h4>Samoocena</h4>';
+      html += '<p>Zaznacz, jak oceniasz swoją pracę: ☐ jestem zadowolony/a ☐ częściowo ☐ muszę powtórzyć temat</p>';
+      document.getElementById('kp-content').innerHTML = html;
+    }
+  })();
+
+  /* ---------- Opinion / observation generator ---------- */
+  (function () {
+    var f = document.getElementById('op-form');
+    if (!f) return;
+    var out = document.getElementById('op-out');
+    var TYP = {
+      'opinia-o-uczniu': 'Opinia o uczniu',
+      'wniosek-ppp': 'Wniosek o badanie w Poradni Psychologiczno-Pedagogologicznej',
+      'opinia-grupa': 'Opinia o funkcjonowaniu ucznia w grupie',
+      'karta-obserwacji': 'Karta obserwacji ucznia',
+    };
+    f.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var typ = val('op-typ');
+      var inicjal = val('op-inicjal');
+      var klasa = val('op-klasa');
+      var cel = val('op-cel');
+      var obserwacje = val('op-obserwacje');
+      var mocne = val('op-mocne');
+      var obszary = val('op-obszary');
+      var zalecenia = val('op-zalecenia');
+      var wyst = val('op-wyst');
+      render();
+      out.classList.add('active');
+      out.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      function val(id) { var el = document.getElementById(id); return el ? el.value.trim() : ''; }
+      function d(v, def) { return v ? v : def; }
+      function p(label, text) { return '<h4>' + label + '</h4><p>' + text + '</p>'; }
+      function render() {
+        var today = new Date().toLocaleDateString('pl-PL', { year: 'numeric', month: 'long', day: 'numeric' });
+        var html = '<h3>' + (TYP[typ] || 'Opinia') + '</h3>';
+        html += '<p class="gen-meta">Miejscowość, data: ………………………, ' + today + '</p>';
+        html += '<p class="gen-meta">Dotyczy ucznia (inicjał/pseudonim): ' + d(inicjal, '………………………') + '  ·  Klasa: ' + d(klasa, '—') + '</p>';
+        html += '<p class="gen-meta">Wystawił: ' + d(wyst, 'Nauczyciel') + '</p>';
+        html += '<hr style="border:none;border-top:1px solid var(--color-divider);margin:var(--space-5) 0">';
+        html += p('1. Cel opinii', d(cel, 'Opinia została sporządzona w celu lepszego poznania potrzeb edukacyjnych ucznia i dostosowania form oraz metod wsparcia.'));
+        html += p('2. Obserwacje i funkcjonowanie ucznia', d(obserwacje, '(Uzupełnij obserwacje dotyczące funkcjonowania ucznia na zajęciach, w relacjach rówieśniczych oraz w sytuacjach trudnych.)'));
+        html += p('3. Mocne strony i zasoby ucznia', d(mocne, '(Wypisz mocne strony, zainteresowania i zasoby ucznia, na których można budować.)'));
+        html += p('4. Obszary wymagające wsparcia', d(obszary, '(Wypisz obszary, w których uczeń napotyka trudności i potrzebuje wsparcia.)'));
+        html += p('5. Zalecenia i rekomendacje', d(zalecenia, '(Sformułuj zalecenia dotyczące form i metod pracy z uczniem oraz ewentualnych działań specjalistycznych.)'));
+        html += p('6. Wnioski', 'Na podstawie powyższych obserwacji rekomenduje się podjęcie działań wynikających z zaleceń oraz bieżące monitorowanie funkcjonowania ucznia.');
+        html += '<hr style="border:none;border-top:1px solid var(--color-divider);margin:var(--space-6) 0">';
+        html += '<p style="margin-top:var(--space-6)">...........................................................................<br>' + d(wyst, 'Nauczyciel') + '<br>(podpis i pieczątka)</p>';
+        html += '<p style="margin-top:var(--space-4);color:var(--color-text-faint);font-size:var(--text-xs)">Dokument jest szablonem wygenerowanym automatycznie. Przed podpisaniem zweryfikuj treść i dostosuj ją do sytuacji ucznia. Nie wprowadzaj pełnych danych osobowych — stosuj inicjał lub pseudonim.</p>';
+        document.getElementById('op-content').innerHTML = html;
+      }
+    });
+  })();
