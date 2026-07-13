@@ -785,8 +785,8 @@ function opiniaContent() {
       <h1>Generator opinii i obserwacji</h1>
       <p class="lead" style="margin-inline:auto">Szablony opinii i kart obserwacji dla nauczycieli, pedagogów szkolnych i psychologów szkolnych. Gotowe do edycji i druku, z eksportem do PDF.</p>
     </div>
-    <div class="callout-card" style="background:var(--color-warning-highlight);border-color:var(--color-border);margin-bottom:var(--space-6);max-width:none">
-      <p style="color:var(--color-text);margin:0"><strong>${ICON.shield} Ochrona danych (RODO):</strong> Wprowadzaj inicjał lub pseudonim ucznia, nie pełne dane osobowe. Generator działa w przeglądarce — wpisane dane nie są wysyłane ani zapisywane.</p>
+    <div class="rodo-info" style="margin-bottom:var(--space-6)">
+      <p style="margin:0"><strong>${ICON.shield} Ochrona danych (RODO):</strong> Wprowadzaj inicjał lub pseudonim ucznia, nie pełne dane osobowe. Generator działa w przeglądarce — wpisane dane nie są wysyłane ani zapisywane.</p>
     </div>
     <form class="gen-form" id="op-form" novalidate>
       <div class="field">
