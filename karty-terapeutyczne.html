@@ -57,7 +57,7 @@
     <div class="section-head">
       <span class="eyebrow">Narzędzie</span>
       <h1>Karty edukacyjne i terapeutyczne</h1>
-      <p class="lead" style="margin-inline:auto">Gotowe karty do druku dla przedszkola i klas 1–3 oraz do pracy pedagoga, logopedy i terapeuty. Kolorowanki, nauka pisania, szlaczyki i emocje — za darmo, z eksportem do PDF.</p>
+      <p class="lead" style="margin-inline:auto">Gotowe karty do druku dla przedszkola i klas 1–3 oraz do pracy pedagoga, logopedy i terapeuty. Kolorowanki, nauka pisania (litery, sylaby, słowa), szlaczyki, emocje i labirynty — za darmo, z eksportem do PDF.</p>
     </div>
     <form class="gen-form" id="kt-form" novalidate>
       <div class="field">
@@ -67,6 +67,7 @@
           <option value="pisanie">Nauka pisania (litery do odrysowania)</option>
           <option value="szlaczyki">Szlaczyki (grafomotoryka)</option>
           <option value="emocje">Emocje</option>
+          <option value="labirynt">Labirynt</option>
         </select>
       </div>
       <div class="field" id="kt-grp-kolorowanka">
@@ -81,9 +82,9 @@
         </select>
       </div>
       <div class="field" id="kt-grp-pisanie" style="display:none">
-        <label for="kt-litera">Litera do ćwiczenia</label>
-        <input type="text" id="kt-litera" name="litera" maxlength="4" placeholder="np. A, a, ł, M" value="A">
-        <span class="hint">Wpisz jedną literę (dużą lub małą). Polskie znaki obsługiwane.</span>
+        <label for="kt-litera">Litera, sylaba lub słowo</label>
+        <input type="text" id="kt-litera" name="litera" maxlength="10" placeholder="np. A, ł, ma, ko, kot, mama" value="A">
+        <span class="hint">Litery, sylaby (ma, ko) lub słowa (kot, mama). Polskie znaki obsługiwane.</span>
         <label for="kt-powtorzenia" style="margin-top:var(--space-3)">Liczba powtórzeń w rzędzie</label>
         <input type="number" id="kt-powtorzenia" name="powtorzenia" min="2" max="8" value="4">
       </div>
@@ -104,6 +105,17 @@
           <option value="smutek">Smutek</option>
           <option value="zlosc">Złość</option>
           <option value="zdziwienie">Zdziwienie</option>
+          <option value="strach">Strach</option>
+          <option value="spokoj">Spokój</option>
+          <option value="wstyd">Wstyd</option>
+        </select>
+      </div>
+      <div class="field" id="kt-grp-labirynt" style="display:none">
+        <label for="kt-trudnosc">Poziom trudności</label>
+        <select id="kt-trudnosc" name="trudnosc">
+          <option value="latwy">Łatwy (przedszkole)</option>
+          <option value="sredni" selected>Średni (klasy 1–3)</option>
+          <option value="trudny">Trudny</option>
         </select>
       </div>
       <div class="field">

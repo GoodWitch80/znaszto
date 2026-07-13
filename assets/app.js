@@ -382,6 +382,7 @@
       pisanie: document.getElementById('kt-grp-pisanie'),
       szlaczyki: document.getElementById('kt-grp-szlaczyki'),
       emocje: document.getElementById('kt-grp-emocje'),
+      labirynt: document.getElementById('kt-grp-labirynt'),
     };
     function sync() {
       var v = rodzaj.value;
@@ -400,6 +401,7 @@
       else if (r === 'pisanie') svg = writingSVG(val('kt-litera'), parseInt(val('kt-powtorzenia') || '4', 10));
       else if (r === 'szlaczyki') svg = patternSVG(val('kt-wzor'));
       else if (r === 'emocje') svg = emotionSVG(val('kt-emocja'));
+      else if (r === 'labirynt') svg = mazeSVG(val('kt-trudnosc'));
       var html = '<div class="kt-card">';
       if (tytul) html += '<h3 class="kt-title">' + esc(tytul) + '</h3>';
       html += '<p class="gen-meta">Imię: \u2026\u2026\u2026\u2026\u2026\u2026\u2026\u2026  Data: \u2026\u2026\u2026\u2026\u2026\u2026\u2026\u2026</p>';
@@ -501,25 +503,77 @@
     function emotionSVG(name) {
       var g = '<g fill="none" stroke="#111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">';
       g += '<circle cx="190" cy="215" r="112"/>';
-      if (name === 'zlosc') {
-        g += '<path d="M148 188 l38 20"/><path d="M232 188 l-38 20"/>';
-      } else {
-        g += '<circle cx="160" cy="195" r="8" fill="#111"/><circle cx="220" cy="195" r="8" fill="#111"/>';
-      }
+      if (name === 'zlosc') { g += '<path d="M148 188 l38 20"/><path d="M232 188 l-38 20"/><circle cx="160" cy="200" r="7" fill="#111"/><circle cx="220" cy="200" r="7" fill="#111"/>'; }
+      else if (name === 'strach') { g += '<circle cx="160" cy="196" r="11"/><circle cx="220" cy="196" r="11"/><path d="M150 176 l26 -8"/><path d="M230 176 l-26 -8"/>'; }
+      else if (name === 'spokoj') { g += '<path d="M148 198 q12 9 24 0"/><path d="M208 198 q12 9 24 0"/>'; }
+      else if (name === 'wstyd') { g += '<circle cx="160" cy="202" r="6" fill="#111"/><circle cx="220" cy="202" r="6" fill="#111"/><path d="M150 190 l28 6"/><path d="M230 190 l-28 6"/>'; }
+      else { g += '<circle cx="160" cy="195" r="8" fill="#111"/><circle cx="220" cy="195" r="8" fill="#111"/>'; }
+      g += '<path d="M186 232 l4 11 l4 -11"/>';
       if (name === 'radosc') g += '<path d="M150 248 q40 52 80 0"/>';
-      else if (name === 'smutek') g += '<path d="M150 270 q40 -52 80 0"/>';
-      else if (name === 'zlosc') g += '<path d="M150 272 q40 -42 80 0"/>';
+      else if (name === 'smutek') g += '<path d="M150 272 q40 -52 80 0"/>';
+      else if (name === 'zlosc') g += '<path d="M150 274 q40 -42 80 0"/>';
       else if (name === 'zdziwienie') g += '<ellipse cx="190" cy="266" rx="14" ry="18"/>';
+      else if (name === 'strach') g += '<ellipse cx="190" cy="270" rx="12" ry="16"/>';
+      else if (name === 'spokoj') g += '<path d="M158 252 q32 24 64 0"/>';
+      else if (name === 'wstyd') g += '<path d="M162 270 q28 -22 56 0"/>';
       else g += '<path d="M150 256 q40 40 80 0"/>';
       g += '</g>';
-      var labels = { radosc: 'radość', smutek: 'smutek', zlosc: 'złość', zdziwienie: 'zdziwienie' };
+      var labels = { radosc: 'radość', smutek: 'smutek', zlosc: 'złość', zdziwienie: 'zdziwienie', strach: 'strach', spokoj: 'spokój', wstyd: 'wstyd' };
       g += '<text x="190" y="402" font-size="24" fill="#111" stroke="none" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-weight="700">' + (labels[name] || '') + '</text>';
       g += '<text x="190" y="442" font-size="13" fill="#111" stroke="none" text-anchor="middle" font-family="Inter,sans-serif">Jak się czujesz? Pokoloruj i opowiedz.</text>';
       return wrap(g);
     }
+    function mazeSVG(diff) {
+      var cols = diff === 'trudny' ? 14 : diff === 'sredni' ? 11 : 8;
+      var rows = diff === 'trudny' ? 16 : diff === 'sredni' ? 13 : 10;
+      var cells = [];
+      for (var y = 0; y < rows; y++) { cells[y] = []; for (var x = 0; x < cols; x++) cells[y][x] = { w: [true, true, true, true], v: false }; }
+      var stack = [[0, 0]];
+      cells[0][0].v = true;
+      while (stack.length) {
+        var cur = stack[stack.length - 1];
+        var cx = cur[0], cy = cur[1];
+        var nb = [];
+        if (cy > 0 && !cells[cy - 1][cx].v) nb.push([cx, cy - 1, 0, 2]);
+        if (cx < cols - 1 && !cells[cy][cx + 1].v) nb.push([cx + 1, cy, 1, 3]);
+        if (cy < rows - 1 && !cells[cy + 1][cx].v) nb.push([cx, cy + 1, 2, 0]);
+        if (cx > 0 && !cells[cy][cx - 1].v) nb.push([cx - 1, cy, 3, 1]);
+        if (nb.length) {
+          var n = nb[Math.floor(Math.random() * nb.length)];
+          cells[cy][cx].w[n[2]] = false;
+          cells[n[1]][n[0]].w[n[3]] = false;
+          cells[n[1]][n[0]].v = true;
+          stack.push([n[0], n[1]]);
+        } else stack.pop();
+      }
+      var W = 380, H = 490, pad = 20, oy = 50;
+      var cw = (W - 2 * pad) / cols;
+      var chh = (H - oy - pad) / rows;
+      var ox = pad;
+      var bottomY = oy + rows * chh;
+      var rightX = ox + cols * cw;
+      var inner = '';
+      for (var yy = 0; yy < rows; yy++) {
+        for (var xx = 0; xx < cols; xx++) {
+          var c = cells[yy][xx];
+          var x0 = ox + xx * cw, y0 = oy + yy * chh, x1 = x0 + cw, y1 = y0 + chh;
+          if (c.w[0] && !(xx === 0 && yy === 0)) inner += '<line x1="' + x0 + '" y1="' + y0 + '" x2="' + x1 + '" y2="' + y0 + '"/>';
+          if (c.w[3]) inner += '<line x1="' + x0 + '" y1="' + y0 + '" x2="' + x0 + '" y2="' + y1 + '"/>';
+        }
+      }
+      inner += '<line x1="' + ox + '" y1="' + bottomY + '" x2="' + (ox + (cols - 1) * cw) + '" y2="' + bottomY + '"/>';
+      inner += '<line x1="' + rightX + '" y1="' + oy + '" x2="' + rightX + '" y2="' + bottomY + '"/>';
+      var g = '<g fill="none" stroke="#111" stroke-width="2" stroke-linecap="square">' + inner + '</g>';
+      g += '<text x="' + ox + '" y="42" font-size="13" fill="#111" stroke="none" font-family="Inter,sans-serif">⬆ Start</text>';
+      g += '<text x="' + (rightX - 56) + '" y="' + (bottomY + 18) + '" font-size="13" fill="#111" stroke="none" font-family="Inter,sans-serif">Meta ⬇</text>';
+      return wrap(g);
+    }
     function writingSVG(text, reps) {
-      var ch = (text || 'Aa').charAt(0) || 'A';
+      text = (text || 'A').trim() || 'A';
       reps = reps && reps > 0 ? reps : 4;
+      var len = text.length;
+      var fontSize = len <= 1 ? 50 : len === 2 ? 44 : len <= 4 ? 36 : len <= 6 ? 30 : 24;
+      var step = Math.min(330 / reps, fontSize * len * 0.62 + 22);
       var rowH = 86, startY = 60, rows = 5, inner = '';
       for (var r = 0; r < rows; r++) {
         var y = startY + r * rowH;
@@ -529,11 +583,10 @@
         inner += '<line x1="20" y1="' + base + '" x2="360" y2="' + base + '" stroke="#111" stroke-width="1.6"/>';
         inner += '<line x1="20" y1="' + bot + '" x2="360" y2="' + bot + '" stroke="#cfd6e4" stroke-width="1"/>';
         if (r < rows - 1) {
-          var step = Math.min(74, 330 / reps);
           var x = 30;
-          var op = r === 0 ? 0.55 : 0.3;
+          var op = r === 0 ? 0.6 : 0.32;
           for (var c = 0; c < reps; c++) {
-            inner += '<text x="' + x + '" y="' + base + '" font-size="50" fill="#111" fill-opacity="' + op + '" stroke="none" font-family="Segoe Print, Comic Sans MS, cursive">' + esc(ch) + '</text>';
+            inner += '<text x="' + x + '" y="' + base + '" font-size="' + fontSize + '" fill="#111" fill-opacity="' + op + '" stroke="none" font-family="Segoe Print, Comic Sans MS, cursive">' + esc(text) + '</text>';
             x += step;
           }
         }
