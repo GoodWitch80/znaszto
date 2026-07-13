@@ -70,13 +70,13 @@ function layout(opts) {
   <meta property="og:title" content="${title}">
   <meta property="og:description" content="${description}">
   <meta property="og:url" content="${fullUrl}">
-  <meta property="og:image" content="${BASE_URL}/assets/og-image.svg">
+  <meta property="og:image" content="${BASE_URL}/assets/og-image.png">
   <meta property="og:locale" content="pl_PL">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@ZnaszTo">
   <meta name="twitter:title" content="${title}">
   <meta name="twitter:description" content="${description}">
-  <meta name="twitter:image" content="${BASE_URL}/assets/og-image.svg">
+  <meta name="twitter:image" content="${BASE_URL}/assets/og-image.png">
   <link rel="icon" type="image/svg+xml" href="${assetBase}favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -468,7 +468,7 @@ function articleJsonLdGeneric(o) {
   const url = BASE_URL + o.canonical;
   const allQ = o.faq.concat(o.related);
   const graph = [
-    { '@type': 'BlogPosting', '@id': url, headline: o.title, description: o.description, datePublished: o.dateIso, dateModified: o.dateIso, inLanguage: 'pl-PL', mainEntityOfPage: url, image: BASE_URL + '/assets/og-image.svg', author: { '@type': 'Organization', name: 'ZnaszTo' }, publisher: { '@type': 'Organization', name: 'ZnaszTo', logo: { '@type': 'ImageObject', url: BASE_URL + '/assets/favicon.svg' } } },
+    { '@type': 'BlogPosting', '@id': url, headline: o.title, description: o.description, datePublished: o.dateIso, dateModified: o.dateIso, inLanguage: 'pl-PL', mainEntityOfPage: url, image: BASE_URL + '/assets/og-image.png', author: { '@type': 'Organization', name: 'ZnaszTo' }, publisher: { '@type': 'Organization', name: 'ZnaszTo', logo: { '@type': 'ImageObject', url: BASE_URL + '/assets/favicon.svg' } } },
     { '@type': 'FAQPage', '@id': url + '#faq', inLanguage: 'pl-PL', mainEntity: allQ.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
     { '@type': 'BreadcrumbList', itemListElement: [ { '@type': 'ListItem', position: 1, name: 'Start', item: BASE_URL + '/' }, { '@type': 'ListItem', position: 2, name: 'Blog', item: BASE_URL + '/blog' }, { '@type': 'ListItem', position: 3, name: o.shortTitle, item: url } ] },
   ];
@@ -1252,7 +1252,7 @@ function articleJsonLd() {
       dateModified: '2026-07-12',
       inLanguage: 'pl-PL',
       mainEntityOfPage: url,
-      image: BASE_URL + '/assets/og-image.svg',
+      image: BASE_URL + '/assets/og-image.png',
       author: { '@type': 'Organization', name: 'ZnaszTo' },
       publisher: { '@type': 'Organization', name: 'ZnaszTo', logo: { '@type': 'ImageObject', url: BASE_URL + '/assets/favicon.svg' } },
     },
