@@ -329,7 +329,7 @@
     var out = document.getElementById('op-out');
     var TYP = {
       'opinia-o-uczniu': 'Opinia o uczniu',
-      'wniosek-ppp': 'Wniosek o badanie w Poradni Psychologiczno-Pedagogologicznej',
+      'wniosek-ppp': 'Wniosek o badanie w Poradni Psychologiczno-Pedagogicznej',
       'opinia-grupa': 'Opinia o funkcjonowaniu ucznia w grupie',
       'karta-obserwacji': 'Karta obserwacji ucznia',
     };
