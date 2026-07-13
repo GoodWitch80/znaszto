@@ -616,6 +616,53 @@ const A_KARTA = {
   ],
 };
 
+const A_KARTY = {
+  canonical: '/blog/karty-terapeutyczne-do-druku',
+  shortTitle: 'Karty terapeutyczne do druku',
+  title: 'Karty terapeutyczne i edukacyjne do druku — jak wykorzystać w pracy z dzieckiem',
+  description: 'Karty terapeutyczne i edukacyjne do druku — kolorowanki, nauka pisania, szlaczyki, emocje i labirynty. Jak wykorzystać je w pracy nauczyciela, pedagoga, logopedy i rodzica.',
+  dateLabel: '13 lipca 2026',
+  dateIso: '2026-07-13',
+  readTime: '~4 min',
+  body: `<p>Praca z dzieckiem w przedszkolu i pierwszych klasach szkoły wymaga wielu różnorodnych materiałów — kolorowanek, kart do nauki pisania, ćwiczeń grafomotorycznych, kart emocji. Ich przygotowanie potrafi zająć długie godziny. Dlatego w ZnaszTo znajdziesz darmowe karty edukacyjne i terapeutyczne do druku — gotowe w kilka sekund, po polsku, bez logowania.</p>
+<h2>Kolorowanki — relaks i motoryka mała</h2>
+<p>Kolorowanie to nie tylko zabawa — to ćwiczenie motoryki małej, koncentracji i cierpliwości. W generatorze znajdziesz proste rysunki (motyl, ryba, kot, drzewo, bałwan) oraz liść z częściami do podpisania — świetne do połączenia plastyki z przyrodą.</p>
+<h2>Nauka pisania — litery, sylaby, słowa</h2>
+<p>Moduł nauki pisania generuje kartę z liniaturą (górna linia, przerywana średnia, linia bazowa, dolna) i wyblakłymi literami do odrysowania. Wpisujesz literę, sylabę (np. „ma”, „ko”) lub słowo (np. „kot”, „mama”), a karta dopasowuje rozmiar automatycznie. Polskie znaki (ł, ś, ż, ź, ą, ę, ć, ń, ó) działają.</p>
+<h2>Szlaczyki — grafomotoryka pod logopedę i terapeutę</h2>
+<p>Szlaczyki to klasyczne ćwiczenie grafomotoryczne, wspomagające przygotowanie ręki do pisania. Każda karta ma jeden pogrubiony wzór wzorcowy oraz jaśniejsze rzędy do odrysowania. Do wyboru: pętle, fale, zygzaki, kółeczka i spirale.</p>
+<h2>Emocje — karty do rozmowy o uczuciach</h2>
+<p>Rozpoznawanie i nazywanie emocji to kluczowa umiejętność społeczna. Karty emocji pokazują buźkę do pokolorowania z podpisem (radość, smutek, złość, zdziwienie, strach, spokój, wstyd) oraz zachętą: „Jak się czujesz? Pokoloruj i opowiedz.” Idealne do pracy pedagoga, psychologa i na zajęciach wychowawczych.</p>
+<h2>Labirynty — koncentracja i planowanie</h2>
+<p>Labirynty ćwiczą logiczne myślenie, planowanie i cierpliwość. Generator tworzy prawdziwy, rozwiązywalny labirynt z wejściem („Start”) i metą. Trzy poziomy trudności: łatwy dla przedszkola, średni dla klas 1–3, trudny dla starszych. Każde kliknięcie daje nowy labirynt.</p>
+<h2>Jak korzystać krok po kroku</h2>
+<ol><li>Wejdź na <a href="/karty-terapeutyczne">generator kart edukacyjnych i terapeutycznych</a>.</li><li>Wybierz rodzaj karty (kolorowanka, nauka pisania, szlaczyki, emocje, labirynt).</li><li>Ustaw szczegóły (szablon, litera/słowo, wzór, emocja, poziom).</li><li>Kliknij „Wygeneruj kartę”.</li><li>Kliknij „Drukuj / zapisz jako PDF” i wydrukuj.</li></ol>
+<h2>Dla kogo</h2>
+<p>Karty sprawdzą się w pracy: nauczycieli edukacji wczesnoszkolnej i przedszkolnej, pedagogów szkolnych, psychologów, logopedów, terapeutów oraz rodziców ćwiczących z dzieckiem w domu.</p>
+<h2>Bezpieczeństwo i RODO</h2>
+<p>Generator działa w całości w przeglądarce — nie wymaga logowania ani konta, a wpisane dane nie są nigdzie wysyłane ani zapisywane. To istotne zwłaszcza przy pracy z dziećmi: nie wprowadzamy danych osobowych uczniów, a karty można generować bez ryzyka dla prywatności.</p>
+<h2>Podsumowanie</h2>
+<p>Darmowe karty edukacyjne i terapeutyczne ZnaszTo to szybki sposób na przygotowanie materiałów do pracy z dzieckiem — od kolorowanek, przez naukę pisania, po labirynty i karty emocji. Wszystko po polsku, bez logowania, z eksportem do PDF. Wypróbuj je na <a href="/karty-terapeutyczne">generatorze kart</a>.</p>`,
+  faq: [
+    { id: 'czy-karty-terapeutyczne-sa-darmowe', q: 'Czy karty edukacyjne i terapeutyczne są darmowe?', a: 'Tak. Wszystkie karty są darmowe, nie wymagają logowania ani rejestracji, a wynik od razu eksportujesz do PDF.' },
+    { id: 'czy-karty-nadaja-sie-dla-logopedy', q: 'Czy karty nadają się do pracy logopedy i terapeuty?', a: 'Tak. Szlaczyki i nauka pisania wspierają grafomotorykę i przygotowanie ręki do pisania, a karty emocji pomagają w rozmowie o uczuciach. Specjalista dobiera kartę do potrzeb dziecka.' },
+    { id: 'czy-moge-edytowac-karte-terapeutyczna', q: 'Czy mogę edytować wygenerowaną kartę?', a: 'Po wyeksportowaniu do PDF możesz wydrukować kartę i dostosować ją do potrzeb dziecka. Każdą kartę można też wygenerować ponownie z innymi ustawieniami.' },
+    { id: 'czy-generator-kart-zbiera-dane-dzieci', q: 'Czy generator kart zbiera dane dzieci?', a: 'Nie. Generator działa w przeglądarce, nie wymaga logowania, a wpisane dane (np. litera, słowo) nie są wysyłane na serwer ani zapisywane.' },
+  ],
+  related: [
+    { id: 'dla-jakich-wiekow-karty-edukacyjne', q: 'Dla jakich wieków są karty edukacyjne?', a: 'Karty są przeznaczone głównie dla przedszkola i klas 1–3, ale labirynty mają poziom trudny dla starszych dzieci, a karty emocji są uniwersalne.' },
+    { id: 'czy-karty-obsuguja-polskie-znaki', q: 'Czy w nauce pisania działają polskie znaki?', a: 'Tak. Generator obsługuje polskie litery (ł, ś, ż, ź, ą, ę, ć, ń, ó) — wpisujesz je, a karta generuje je do odrysowania.' },
+    { id: 'czy-labirynt-zawsze-rozwiazywalny', q: 'Czy wygenerowany labirynt jest zawsze rozwiązywalny?', a: 'Tak. Algorytm generuje prawdziwy labirynt z jedną ścieżką od wejścia do mety — każde kliknięcie tworzy nowy, rozwiązywalny układ.' },
+    { id: 'czy-moge-uzywac-kart-w-szkole', q: 'Czy mogę używać kart w szkole i przedszkolu?', a: 'Tak. Karty są darmowe i można je drukować oraz rozdawać dzieciom w klasie lub grupie przedszkolnej.' },
+    { id: 'ile-kart-moge-wygenerowac', q: 'Ile kart mogę wygenerować?', a: 'Bez limitu. Generator jest darmowy i bez logowania — możesz tworzyć dowolną liczbę kart dla swoich uczniów.' },
+  ],
+  sources: [
+    '<a href="/karty-terapeutyczne">ZnaszTo — generator kart edukacyjnych i terapeutycznych</a>',
+    '<a href="/generator">Generator lekcji AI ZnaszTo</a>',
+    '<a href="https://efs.men.gov.pl/wp-content/uploads/2025/12/Zalacznik-nr-10-Ogolne-Standardy-dla-nauczycieli-kompetecje-cyfrowe.pdf" rel="noopener">MEN — Ogólne Standardy kompetencji cyfrowych nauczycieli (PDF)</a>',
+  ],
+};
+
 const GLOSSARY = [
   { term: 'Sztuczna inteligencja (AI)', def: 'Systemy, które wykonują zadania wymagające ludzkiego myślenia — np. rozpoznawanie tekstu, generowanie odpowiedzi, analiza danych.' },
   { term: 'LLM (Large Language Model)', def: 'Duży model językowy — program uczony na ogromnych zbiorach tekstu, który generuje i rozumie język naturalny, np. ChatGPT, Gemini, Copilot.' },
@@ -1175,6 +1222,12 @@ function pages() {
         <p>Krok po kroku: jak wygenerować kartę pracy, konspekt i zadanie domowe i wyeksportować do PDF.</p>
         <span class="card__arrow">Czytaj artykuł ${ICON.arrow}</span>
       </a>
+      <a class="card" href="/blog/karty-terapeutyczne-do-druku">
+        <span class="card__icon" aria-hidden="true">${ICON.sparkles}</span>
+        <h3>Karty terapeutyczne i edukacyjne do druku — jak wykorzystać w pracy z dzieckiem</h3>
+        <p>Kolorowanki, nauka pisania, szlaczyki, emocje i labirynty — darmowe karty dla przedszkola, klas 1–3 i specjalistów.</p>
+        <span class="card__arrow">Czytaj artykuł ${ICON.arrow}</span>
+      </a>
     </div>
   </div>
 </section>`,
@@ -1218,6 +1271,16 @@ function pages() {
       activeNav: '/blog',
       jsonld: articleJsonLdGeneric(A_KARTA),
       content: articleContentGeneric(A_KARTA),
+    },
+    {
+      path: 'blog/karty-terapeutyczne-do-druku.html',
+      title: A_KARTY.title + ' | ZnaszTo',
+      description: A_KARTY.description,
+      canonical: A_KARTY.canonical,
+      ogType: 'article',
+      activeNav: '/blog',
+      jsonld: articleJsonLdGeneric(A_KARTY),
+      content: articleContentGeneric(A_KARTY),
     },
     {
       path: 'slownik-ai.html',
@@ -1419,6 +1482,7 @@ const urls = [
   ['/blog/rodo-ai-w-szkole', '0.8', 'weekly'],
   ['/blog/prompt-engineering-dla-nauczycieli', '0.8', 'weekly'],
   ['/blog/karta-pracy-z-ai-w-5-minut', '0.8', 'weekly'],
+  ['/blog/karty-terapeutyczne-do-druku', '0.8', 'weekly'],
   ['/slownik-ai', '0.7', 'monthly'],
   ['/kontakt', '0.5', 'monthly'],
   ['/o-projekcie', '0.6', 'monthly'],
