@@ -458,7 +458,7 @@
         g += '<path d="M176 148 l13 -44 15 44 z" fill="#111"/>';
         g += '<circle cx="176" cy="144" r="4" fill="#111"/>';
         g += '<circle cx="204" cy="144" r="4" fill="#111"/>';
-        g += '<path d="M150 122 q40 12 80 0"/>';
+        g += '<path d="M150 186 q40 14 80 0"/><path d="M222 186 q10 8 8 22"/>';
         g += '<rect x="150" y="108" width="80" height="16"/>';
         g += '<rect x="160" y="62" width="60" height="48"/>';
         g += '<circle cx="190" cy="230" r="5" fill="#111"/>';
@@ -467,17 +467,19 @@
         g += '<path d="M135 245 l-46 -12"/><path d="M89 233 l-6 -12 m6 12 l-6 12"/>';
         g += '<path d="M245 245 l46 -12"/><path d="M291 233 l6 -12 m-6 12 l6 12"/>';
       } else if (name === 'lisc') {
-        g += '<path d="M190 90 Q150 110 110 150 Q90 180 70 250 Q90 310 120 360 Q155 390 190 410 Q225 390 260 360 Q290 310 310 250 Q290 180 270 150 Q230 110 190 90 Z"/>';
-        g += '<path d="M190 110 L190 408"/>';
-        g += '<path d="M190 200 Q150 212 122 242"/>';
-        g += '<path d="M190 200 Q230 212 258 242"/>';
-        g += '<path d="M190 290 Q150 302 122 332"/>';
-        g += '<path d="M190 290 Q230 302 258 332"/>';
-        g += '<path d="M190 410 L190 472"/>';
-        g += '<line x1="258" y1="242" x2="324" y2="224" stroke-width="1.5"/>';
-        g += '<text x="328" y="228" font-size="14" fill="#111" stroke="none" font-family="Inter,sans-serif">blaszka</text>';
-        g += '<line x1="190" y1="324" x2="324" y2="350" stroke-width="1.5"/>';
-        g += '<text x="328" y="354" font-size="14" fill="#111" stroke="none" font-family="Inter,sans-serif">nerw</text>';
+        g += '<path d="M190 88 L235 175 L285 150 L295 200 L312 250 L290 295 L260 340 L235 365 L210 400 L170 400 L145 365 L120 340 L90 295 L68 250 L85 200 L95 150 L145 175 Z"/>';
+        g += '<path d="M190 112 L190 400"/>';
+        g += '<path d="M190 200 L235 175"/>';
+        g += '<path d="M190 200 L145 175"/>';
+        g += '<path d="M190 250 L295 200"/>';
+        g += '<path d="M190 250 L85 200"/>';
+        g += '<path d="M190 300 L290 295"/>';
+        g += '<path d="M190 300 L90 295"/>';
+        g += '<path d="M190 400 L190 472"/>';
+        g += '<line x1="312" y1="250" x2="324" y2="232" stroke-width="1.5"/>';
+        g += '<text x="328" y="236" font-size="14" fill="#111" stroke="none" font-family="Inter,sans-serif">blaszka</text>';
+        g += '<line x1="190" y1="300" x2="324" y2="326" stroke-width="1.5"/>';
+        g += '<text x="328" y="330" font-size="14" fill="#111" stroke="none" font-family="Inter,sans-serif">nerw</text>';
         g += '<line x1="190" y1="456" x2="252" y2="470" stroke-width="1.5"/>';
         g += '<text x="256" y="474" font-size="14" fill="#111" stroke="none" font-family="Inter,sans-serif">ogonek</text>';
       } else {
