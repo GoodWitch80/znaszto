@@ -452,31 +452,34 @@
         g += '<circle cx="158" cy="188" r="42"/>';
         g += '<circle cx="222" cy="188" r="42"/>';
       } else if (name === 'balwan') {
-        g += '<circle cx="190" cy="372" r="84"/>';
-        g += '<circle cx="190" cy="240" r="58"/>';
-        g += '<circle cx="190" cy="152" r="42"/>';
-        g += '<path d="M177 150 l13 -44 15 44 z" fill="#111"/>';
-        g += '<circle cx="176" cy="146" r="4" fill="#111"/>';
-        g += '<circle cx="204" cy="146" r="4" fill="#111"/>';
-        g += '<rect x="150" y="108" width="80" height="18"/>';
-        g += '<rect x="160" y="64" width="60" height="48"/>';
-        g += '<circle cx="190" cy="226" r="5" fill="#111"/>';
+        g += '<circle cx="190" cy="380" r="80"/>';
+        g += '<circle cx="190" cy="245" r="55"/>';
+        g += '<circle cx="190" cy="150" r="40"/>';
+        g += '<path d="M176 148 l13 -44 15 44 z" fill="#111"/>';
+        g += '<circle cx="176" cy="144" r="4" fill="#111"/>';
+        g += '<circle cx="204" cy="144" r="4" fill="#111"/>';
+        g += '<path d="M150 122 q40 12 80 0"/>';
+        g += '<rect x="150" y="108" width="80" height="16"/>';
+        g += '<rect x="160" y="62" width="60" height="48"/>';
+        g += '<circle cx="190" cy="230" r="5" fill="#111"/>';
         g += '<circle cx="190" cy="258" r="5" fill="#111"/>';
-        g += '<circle cx="190" cy="290" r="5" fill="#111"/>';
+        g += '<circle cx="190" cy="286" r="5" fill="#111"/>';
+        g += '<path d="M135 245 l-46 -12"/><path d="M89 233 l-6 -12 m6 12 l-6 12"/>';
+        g += '<path d="M245 245 l46 -12"/><path d="M291 233 l6 -12 m-6 12 l6 12"/>';
       } else if (name === 'lisc') {
-        g += '<path d="M190 70 Q302 232 190 432 Q78 232 190 70 Z"/>';
-        g += '<path d="M190 70 L190 432"/>';
-        g += '<path d="M190 162 Q236 188 256 228"/>';
-        g += '<path d="M190 162 Q144 188 124 228"/>';
-        g += '<path d="M190 272 Q246 298 266 338"/>';
-        g += '<path d="M190 272 Q134 298 114 338"/>';
-        g += '<path d="M190 432 L190 478"/>';
-        g += '<line x1="256" y1="228" x2="324" y2="212" stroke-width="1.5"/>';
-        g += '<text x="328" y="216" font-size="14" fill="#111" stroke="none" font-family="Inter,sans-serif">blaszka</text>';
-        g += '<line x1="190" y1="322" x2="324" y2="346" stroke-width="1.5"/>';
-        g += '<text x="328" y="350" font-size="14" fill="#111" stroke="none" font-family="Inter,sans-serif">nerw</text>';
-        g += '<line x1="190" y1="462" x2="252" y2="474" stroke-width="1.5"/>';
-        g += '<text x="256" y="478" font-size="14" fill="#111" stroke="none" font-family="Inter,sans-serif">ogonek</text>';
+        g += '<path d="M190 90 Q150 110 110 150 Q90 180 70 250 Q90 310 120 360 Q155 390 190 410 Q225 390 260 360 Q290 310 310 250 Q290 180 270 150 Q230 110 190 90 Z"/>';
+        g += '<path d="M190 110 L190 408"/>';
+        g += '<path d="M190 200 Q150 212 122 242"/>';
+        g += '<path d="M190 200 Q230 212 258 242"/>';
+        g += '<path d="M190 290 Q150 302 122 332"/>';
+        g += '<path d="M190 290 Q230 302 258 332"/>';
+        g += '<path d="M190 410 L190 472"/>';
+        g += '<line x1="258" y1="242" x2="324" y2="224" stroke-width="1.5"/>';
+        g += '<text x="328" y="228" font-size="14" fill="#111" stroke="none" font-family="Inter,sans-serif">blaszka</text>';
+        g += '<line x1="190" y1="324" x2="324" y2="350" stroke-width="1.5"/>';
+        g += '<text x="328" y="354" font-size="14" fill="#111" stroke="none" font-family="Inter,sans-serif">nerw</text>';
+        g += '<line x1="190" y1="456" x2="252" y2="470" stroke-width="1.5"/>';
+        g += '<text x="256" y="474" font-size="14" fill="#111" stroke="none" font-family="Inter,sans-serif">ogonek</text>';
       } else {
         g += '<rect x="30" y="30" width="320" height="430"/>';
       }
@@ -502,25 +505,38 @@
     }
     function emotionSVG(name) {
       var g = '<g fill="none" stroke="#111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">';
-      g += '<circle cx="190" cy="215" r="112"/>';
-      if (name === 'zlosc') { g += '<path d="M148 188 l38 20"/><path d="M232 188 l-38 20"/><circle cx="160" cy="200" r="7" fill="#111"/><circle cx="220" cy="200" r="7" fill="#111"/>'; }
-      else if (name === 'strach') { g += '<circle cx="160" cy="196" r="11"/><circle cx="220" cy="196" r="11"/><path d="M150 176 l26 -8"/><path d="M230 176 l-26 -8"/>'; }
-      else if (name === 'spokoj') { g += '<path d="M148 198 q12 9 24 0"/><path d="M208 198 q12 9 24 0"/>'; }
-      else if (name === 'wstyd') { g += '<circle cx="160" cy="202" r="6" fill="#111"/><circle cx="220" cy="202" r="6" fill="#111"/><path d="M150 190 l28 6"/><path d="M230 190 l-28 6"/>'; }
-      else { g += '<circle cx="160" cy="195" r="8" fill="#111"/><circle cx="220" cy="195" r="8" fill="#111"/>'; }
-      g += '<path d="M186 232 l4 11 l4 -11"/>';
-      if (name === 'radosc') g += '<path d="M150 248 q40 52 80 0"/>';
-      else if (name === 'smutek') g += '<path d="M150 272 q40 -52 80 0"/>';
-      else if (name === 'zlosc') g += '<path d="M150 274 q40 -42 80 0"/>';
-      else if (name === 'zdziwienie') g += '<ellipse cx="190" cy="266" rx="14" ry="18"/>';
-      else if (name === 'strach') g += '<ellipse cx="190" cy="270" rx="12" ry="16"/>';
-      else if (name === 'spokoj') g += '<path d="M158 252 q32 24 64 0"/>';
-      else if (name === 'wstyd') g += '<path d="M162 270 q28 -22 56 0"/>';
-      else g += '<path d="M150 256 q40 40 80 0"/>';
+      g += '<circle cx="190" cy="220" r="118"/>';
+      g += '<path d="M168 106 q8 -20 18 -6 q8 -16 20 -2 q8 -14 18 -4 q8 -12 16 -2"/>';
+      g += '<circle cx="132" cy="248" r="11"/>';
+      g += '<circle cx="248" cy="248" r="11"/>';
+      if (name === 'spokoj') {
+        g += '<path d="M150 214 q13 11 28 0"/><path d="M202 214 q13 11 28 0"/>';
+      } else if (name === 'wstyd') {
+        g += '<circle cx="164" cy="216" r="14"/><circle cx="216" cy="216" r="14"/>';
+        g += '<circle cx="164" cy="220" r="4" fill="#111"/><circle cx="216" cy="220" r="4" fill="#111"/>';
+        g += '<path d="M150 200 l28 8"/><path d="M230 200 l-28 8"/>';
+      } else {
+        g += '<circle cx="164" cy="212" r="15"/><circle cx="216" cy="212" r="15"/>';
+        g += '<circle cx="164" cy="215" r="5" fill="#111"/><circle cx="216" cy="215" r="5" fill="#111"/>';
+      }
+      if (name === 'zlosc') { g += '<path d="M146 184 l32 16"/><path d="M234 184 l-32 16"/>'; }
+      else if (name === 'strach') { g += '<path d="M148 176 l30 -10"/><path d="M232 176 l-30 -10"/>'; }
+      else if (name === 'zdziwienie') { g += '<path d="M152 182 q12 -7 24 0"/><path d="M204 182 q12 -7 24 0"/>'; }
+      else if (name === 'smutek') { g += '<path d="M150 188 q14 -6 28 0"/><path d="M202 188 q14 -6 28 0"/>'; }
+      else { g += '<path d="M150 190 q14 -7 28 0"/><path d="M202 190 q14 -7 28 0"/>'; }
+      g += '<circle cx="190" cy="250" r="9"/>';
+      if (name === 'radosc') g += '<path d="M148 278 q42 44 84 0"/>';
+      else if (name === 'smutek') g += '<path d="M154 294 q36 -38 72 0"/>';
+      else if (name === 'zlosc') g += '<path d="M150 294 q40 -34 80 0"/>';
+      else if (name === 'zdziwienie') g += '<ellipse cx="190" cy="290" rx="12" ry="16"/>';
+      else if (name === 'strach') g += '<ellipse cx="190" cy="292" rx="11" ry="15"/>';
+      else if (name === 'spokoj') g += '<path d="M156 280 q34 24 68 0"/>';
+      else if (name === 'wstyd') g += '<path d="M166 294 q24 -24 48 0"/>';
+      else g += '<path d="M152 286 q38 30 76 0"/>';
       g += '</g>';
       var labels = { radosc: 'radość', smutek: 'smutek', zlosc: 'złość', zdziwienie: 'zdziwienie', strach: 'strach', spokoj: 'spokój', wstyd: 'wstyd' };
-      g += '<text x="190" y="402" font-size="24" fill="#111" stroke="none" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-weight="700">' + (labels[name] || '') + '</text>';
-      g += '<text x="190" y="442" font-size="13" fill="#111" stroke="none" text-anchor="middle" font-family="Inter,sans-serif">Jak się czujesz? Pokoloruj i opowiedz.</text>';
+      g += '<text x="190" y="408" font-size="24" fill="#111" stroke="none" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-weight="700">' + (labels[name] || '') + '</text>';
+      g += '<text x="190" y="446" font-size="13" fill="#111" stroke="none" text-anchor="middle" font-family="Inter,sans-serif">Jak się czujesz? Pokoloruj i opowiedz.</text>';
       return wrap(g);
     }
     function mazeSVG(diff) {

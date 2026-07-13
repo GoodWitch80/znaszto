@@ -458,9 +458,9 @@ function articleContentGeneric(o) {
         <p class="sr-only" data-copy-live aria-live="polite"></p>
       </section>
       <div class="cta-band" style="margin-top:var(--space-12)">
-        <h2>Wygeneruj własną lekcję z AI</h2>
-        <p>Wpisz temat i cel — otrzymasz konspekt, kartę pracy i zadanie domowe w kilka sekund.</p>
-        <a class="btn btn--primary btn--lg" href="/generator" style="margin-top:var(--space-6)">Otwórz generator ${ICON.arrow}</a>
+        <h2>${o.cta ? o.cta.title : 'Wygeneruj własną lekcję z AI'}</h2>
+        <p>${o.cta ? o.cta.text : 'Wpisz temat i cel — otrzymasz konspekt, kartę pracy i zadanie domowe w kilka sekund.'}</p>
+        <a class="btn btn--primary btn--lg" href="${o.cta ? o.cta.href : '/generator'}" style="margin-top:var(--space-6)">${o.cta ? o.cta.label : 'Otwórz generator'} ${ICON.arrow}</a>
       </div>
       <section class="sources">
         <h2>Źródła i materiały powiązane</h2>
@@ -585,17 +585,16 @@ const A_KARTA = {
 <h2>Czym jest dobra karta pracy</h2>
 <p>Dobra karta pracy ma jasny cel, stopniowaną trudność (od łatwego do trudniejszego zadania), miejsce na odpowiedź i element samoooceny. Powinna być czytelna i gotowa do druku.</p>
 <h2>Krok po kroku: generator → PDF → druk</h2>
-<ol><li>Wejdź na <a href="/generator">generator lekcji ZnaszTo</a>.</li><li>Wpisz temat i cel lekcji, wybierz przedmiot, klasę i czas.</li><li>Kliknij „Wygeneruj lekcję”.</li><li>Przejdź do zakładki „Karta pracy”.</li><li>Kliknij „Drukuj / zapisz jako PDF” i wybierz „Zapisz jako PDF”.</li><li>Wydrukuj lub udostępnij plik uczniom.</li></ol>
+<ol><li>Wejdź na <a href="/generator-kart-pracy">generator kart pracy ZnaszTo</a>.</li><li>Wpisz temat, wybierz przedmiot, klasę, liczbę i typ zadań.</li><li>Kliknij „Wygeneruj kartę pracy”.</li><li>Kliknij „Drukuj / zapisz jako PDF” i wybierz „Zapisz jako PDF”.</li><li>Wydrukuj lub udostępnij plik uczniom.</li></ol>
 <h2>Przykłady dla różnych poziomów</h2>
 <ul class="dashed"><li><strong>Klasy 1–3:</strong> prosta karta z dużą czcionką, jedno zadanie na stronę.</li><li><strong>Klasy 4–6:</strong> zadania z rosnącą trudnością, miejsce na krótką odpowiedź.</li><li><strong>Klasy 7+:</strong> zadania problemowe, analiza, samooocena.</li></ul>
 <h2>Podsumowanie</h2>
 <p>Generator ZnaszTo tworzy kartę pracy dopasowaną do tematu, klasy i czasu — gotową do druku lub PDF w kilka minut, bez logowania.</p>`,
   howTo: { '@type': 'HowTo', name: 'Jak wygenerować kartę pracy z AI', inLanguage: 'pl-PL', step: [
-    { '@type': 'HowToStep', position: 1, name: 'Otwórz generator', text: 'Wejdź na generator lekcji ZnaszTo.' },
-    { '@type': 'HowToStep', position: 2, name: 'Wpisz temat i cel', text: 'Podaj temat lekcji i jej główny cel, wybierz przedmiot, klasę i czas trwania.' },
-    { '@type': 'HowToStep', position: 3, name: 'Wygeneruj lekcję', text: 'Kliknij „Wygeneruj lekcję”, aby utworzyć konspekt, kartę pracy i zadanie domowe.' },
-    { '@type': 'HowToStep', position: 4, name: 'Przejdź do karty pracy', text: 'Wybierz zakładkę „Karta pracy”.' },
-    { '@type': 'HowToStep', position: 5, name: 'Eksport do PDF', text: 'Kliknij „Drukuj / zapisz jako PDF” i zapisz plik.' },
+    { '@type': 'HowToStep', position: 1, name: 'Otwórz generator kart pracy', text: 'Wejdź na generator kart pracy ZnaszTo.' },
+    { '@type': 'HowToStep', position: 2, name: 'Wpisz temat i ustawienia', text: 'Podaj temat, przedmiot, klasę, liczbę i typ zadań.' },
+    { '@type': 'HowToStep', position: 3, name: 'Wygeneruj kartę pracy', text: 'Kliknij „Wygeneruj kartę pracy”, aby utworzyć kartę z zadaniami i samooceną.' },
+    { '@type': 'HowToStep', position: 4, name: 'Eksport do PDF', text: 'Kliknij „Drukuj / zapisz jako PDF” i zapisz plik.' },
   ] },
   faq: [
     { id: 'czy-karta-pracy-z-ai-jest-darmowa', q: 'Czy karta pracy z AI jest darmowa?', a: 'Tak. Generator ZnaszTo jest darmowy, nie wymaga logowania, a wynik eksportujesz do PDF bez opłat.' },
@@ -611,9 +610,10 @@ const A_KARTA = {
     { id: 'czy-karta-pracy-zawiera-samoocene', q: 'Czy karta pracy zawiera samooocenę?', a: 'Tak. Na końcu karty znajduje się prosty element samoooceny, który pomaga uczniowi reflaktować nad własną pracą.' },
   ],
   sources: [
-    '<a href="/generator">ZnaszTo — generator lekcji AI</a>',
+    '<a href="/generator-kart-pracy">ZnaszTo — generator kart pracy</a>',
     '<a href="/scenariusze">Scenariusze lekcji na ZnaszTo</a>',
   ],
+  cta: { href: '/generator-kart-pracy', label: 'Otwórz generator kart pracy', title: 'Wygeneruj kartę pracy z AI', text: 'Wybierz temat i typ zadań — karta pracy gotowa do druku w kilka sekund.' },
 };
 
 const A_KARTY = {
@@ -661,6 +661,7 @@ const A_KARTY = {
     '<a href="/generator">Generator lekcji AI ZnaszTo</a>',
     '<a href="https://efs.men.gov.pl/wp-content/uploads/2025/12/Zalacznik-nr-10-Ogolne-Standardy-dla-nauczycieli-kompetecje-cyfrowe.pdf" rel="noopener">MEN — Ogólne Standardy kompetencji cyfrowych nauczycieli (PDF)</a>',
   ],
+  cta: { href: '/karty-terapeutyczne', label: 'Otwórz generator kart', title: 'Wygeneruj kartę do druku', text: 'Kolorowanki, nauka pisania, szlaczyki, emocje i labirynty — gotowe w kilka sekund.' },
 };
 
 const GLOSSARY = [
@@ -929,7 +930,7 @@ function kartyTerapeutyczneContent() {
           <option value="kot">Kot</option>
           <option value="drzewo">Drzewo</option>
           <option value="balwan">Bałwan</option>
-          <option value="lisc">Liść (z częściami do podpisania)</option>
+          <option value="lisc">Liść klonu (z częściami do podpisania)</option>
         </select>
       </div>
       <div class="field" id="kt-grp-pisanie" style="display:none">
