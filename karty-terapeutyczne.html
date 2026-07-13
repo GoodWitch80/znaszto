@@ -3,20 +3,20 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Generator kart pracy — ZnaszTo</title>
-  <meta name="description" content="Darmowy generator kart pracy dla nauczycieli. Wybierz temat, liczbę i typ zadań, a otrzymasz kartę pracy gotową do druku lub PDF.">
+  <title>Karty edukacyjne i terapeutyczne — ZnaszTo</title>
+  <meta name="description" content="Darmowe karty do druku dla przedszkola i klas 1–3 oraz dla pedagoga, logopedy i terapeuty: kolorowanki, nauka pisania, szlaczyki i emocje. Z eksportem do PDF.">
   <meta name="author" content="ZnaszTo">
-  <link rel="canonical" href="https://znaszto.netlify.app/generator-kart-pracy">
+  <link rel="canonical" href="https://znaszto.netlify.app/karty-terapeutyczne">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Generator kart pracy — ZnaszTo">
-  <meta property="og:description" content="Darmowy generator kart pracy dla nauczycieli. Wybierz temat, liczbę i typ zadań, a otrzymasz kartę pracy gotową do druku lub PDF.">
-  <meta property="og:url" content="https://znaszto.netlify.app/generator-kart-pracy">
+  <meta property="og:title" content="Karty edukacyjne i terapeutyczne — ZnaszTo">
+  <meta property="og:description" content="Darmowe karty do druku dla przedszkola i klas 1–3 oraz dla pedagoga, logopedy i terapeuty: kolorowanki, nauka pisania, szlaczyki i emocje. Z eksportem do PDF.">
+  <meta property="og:url" content="https://znaszto.netlify.app/karty-terapeutyczne">
   <meta property="og:image" content="https://znaszto.netlify.app/assets/og-image.png">
   <meta property="og:locale" content="pl_PL">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@ZnaszTo">
-  <meta name="twitter:title" content="Generator kart pracy — ZnaszTo">
-  <meta name="twitter:description" content="Darmowy generator kart pracy dla nauczycieli. Wybierz temat, liczbę i typ zadań, a otrzymasz kartę pracy gotową do druku lub PDF.">
+  <meta name="twitter:title" content="Karty edukacyjne i terapeutyczne — ZnaszTo">
+  <meta name="twitter:description" content="Darmowe karty do druku dla przedszkola i klas 1–3 oraz dla pedagoga, logopedy i terapeuty: kolorowanki, nauka pisania, szlaczyki i emocje. Z eksportem do PDF.">
   <meta name="twitter:image" content="https://znaszto.netlify.app/assets/og-image.png">
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -56,58 +56,67 @@
   <div class="container">
     <div class="section-head">
       <span class="eyebrow">Narzędzie</span>
-      <h1>Generator kart pracy</h1>
-      <p class="lead" style="margin-inline:auto">Wygeneruj kartę pracy z zadaniami o rosnącej trudności — gotową do druku lub PDF. Za darmo, bez logowania, dane nie są nigdzie wysyłane.</p>
+      <h1>Karty edukacyjne i terapeutyczne</h1>
+      <p class="lead" style="margin-inline:auto">Gotowe karty do druku dla przedszkola i klas 1–3 oraz do pracy pedagoga, logopedy i terapeuty. Kolorowanki, nauka pisania, szlaczyki i emocje — za darmo, z eksportem do PDF.</p>
     </div>
-    <form class="gen-form" id="kp-form" novalidate>
+    <form class="gen-form" id="kt-form" novalidate>
       <div class="field">
-        <label for="kp-temat">Temat karty pracy *</label>
-        <input type="text" id="kp-temat" name="temat" required placeholder="Np. rozpoznawanie rzeczownika">
+        <label for="kt-rodzaj">Rodzaj karty</label>
+        <select id="kt-rodzaj" name="rodzaj">
+          <option value="kolorowanka">Kolorowanka</option>
+          <option value="pisanie">Nauka pisania (litery do odrysowania)</option>
+          <option value="szlaczyki">Szlaczyki (grafomotoryka)</option>
+          <option value="emocje">Emocje</option>
+        </select>
       </div>
-      <div class="form-row">
-        <div class="field">
-          <label for="kp-przedmiot">Przedmiot</label>
-          <select id="kp-przedmiot" name="przedmiot">
-            <option value="">— wybierz —</option>
-            <option>Język polski</option><option>Matematyka</option><option>Przyroda / Biologia</option>
-            <option>Fizyka / Chemia</option><option>Historia / WOS</option><option>Język obcy</option>
-            <option>Informatyka</option><option>Geografia</option><option>Inny</option>
-          </select>
-        </div>
-        <div class="field">
-          <label for="kp-klasa">Poziom klasy</label>
-          <select id="kp-klasa" name="klasa">
-            <option value="">— wybierz —</option>
-            <option>Edukacja wczesnoszkolna (1–3)</option>
-            <option>Klasy 4–6</option><option>Klasy 7–8</option>
-            <option>Szkoła ponadpodstawowa</option>
-          </select>
-        </div>
+      <div class="field" id="kt-grp-kolorowanka">
+        <label for="kt-szablon">Szablon kolorowanki</label>
+        <select id="kt-szablon" name="szablon">
+          <option value="motyl">Motyl</option>
+          <option value="ryba">Ryba</option>
+          <option value="kot">Kot</option>
+          <option value="drzewo">Drzewo</option>
+          <option value="balwan">Bałwan</option>
+          <option value="lisc">Liść (z częściami do podpisania)</option>
+        </select>
       </div>
-      <div class="form-row">
-        <div class="field">
-          <label for="kp-liczba">Liczba zadań</label>
-          <select id="kp-liczba" name="liczba">
-            <option value="3">3</option><option value="4" selected>4</option><option value="5">5</option><option value="6">6</option>
-          </select>
-        </div>
-        <div class="field">
-          <label for="kp-typ">Typ zadań</label>
-          <select id="kp-typ" name="typ">
-            <option value="mieszane" selected>Mieszane (zalecane)</option>
-            <option value="praktyczne">Ćwiczenia praktyczne</option>
-            <option value="pytania">Pytania otwarte</option>
-            <option value="luki">Uzupełnianie luk</option>
-          </select>
-        </div>
+      <div class="field" id="kt-grp-pisanie" style="display:none">
+        <label for="kt-litera">Litera do ćwiczenia</label>
+        <input type="text" id="kt-litera" name="litera" maxlength="4" placeholder="np. A, a, ł, M" value="A">
+        <span class="hint">Wpisz jedną literę (dużą lub małą). Polskie znaki obsługiwane.</span>
+        <label for="kt-powtorzenia" style="margin-top:var(--space-3)">Liczba powtórzeń w rzędzie</label>
+        <input type="number" id="kt-powtorzenia" name="powtorzenia" min="2" max="8" value="4">
       </div>
-      <div><button type="submit" class="btn btn--primary btn--lg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 21 12-12M14 5l2 2M19 10l1 1M16 3l1 1M21 6l1 1M9 10l1 1"/></svg> Wygeneruj kartę pracy</button></div>
+      <div class="field" id="kt-grp-szlaczyki" style="display:none">
+        <label for="kt-wzor">Wzór szlaczka</label>
+        <select id="kt-wzor" name="wzor">
+          <option value="petle">Pętle</option>
+          <option value="fale">Fale</option>
+          <option value="zygzak">Zygzak</option>
+          <option value="kolka">Kółeczka</option>
+          <option value="spirale">Spirale</option>
+        </select>
+      </div>
+      <div class="field" id="kt-grp-emocje" style="display:none">
+        <label for="kt-emocja">Emocja</label>
+        <select id="kt-emocja" name="emocja">
+          <option value="radosc">Radość</option>
+          <option value="smutek">Smutek</option>
+          <option value="zlosc">Złość</option>
+          <option value="zdziwienie">Zdziwienie</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="kt-tytul">Tytuł karty (opcjonalnie)</label>
+        <input type="text" id="kt-tytul" name="tytul" placeholder="np. Moja pierwsza litera">
+      </div>
+      <div><button type="submit" class="btn btn--primary btn--lg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 21 12-12M14 5l2 2M19 10l1 1M16 3l1 1M21 6l1 1M9 10l1 1"/></svg> Wygeneruj kartę</button></div>
     </form>
-    <div class="gen-output" id="kp-out" aria-live="polite">
-      <div class="gen-panel active" id="kp-content"></div>
+    <div class="gen-output" id="kt-out" aria-live="polite">
+      <div class="gen-panel active" id="kt-content"></div>
       <div class="gen-actions">
         <button type="button" class="btn btn--primary" onclick="window.print()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/></svg> Drukuj / zapisz jako PDF</button>
-        <a class="btn btn--ghost" href="/generator">Generator lekcji AI</a>
+        <a class="btn btn--ghost" href="/narzedzia">Inne narzędzia</a>
       </div>
     </div>
   </div>

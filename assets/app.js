@@ -370,3 +370,174 @@
       }
     });
   })();
+
+  /* ---------- Karty edukacyjne i terapeutyczne ---------- */
+  (function () {
+    var form = document.getElementById('kt-form');
+    if (!form) return;
+    var out = document.getElementById('kt-out');
+    var rodzaj = document.getElementById('kt-rodzaj');
+    var groups = {
+      kolorowanka: document.getElementById('kt-grp-kolorowanka'),
+      pisanie: document.getElementById('kt-grp-pisanie'),
+      szlaczyki: document.getElementById('kt-grp-szlaczyki'),
+      emocje: document.getElementById('kt-grp-emocje'),
+    };
+    function sync() {
+      var v = rodzaj.value;
+      Object.keys(groups).forEach(function (k) {
+        if (groups[k]) groups[k].style.display = k === v ? '' : 'none';
+      });
+    }
+    rodzaj.addEventListener('change', sync);
+    sync();
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var tytul = val('kt-tytul');
+      var r = rodzaj.value;
+      var svg = '';
+      if (r === 'kolorowanka') svg = colorSVG(val('kt-szablon'));
+      else if (r === 'pisanie') svg = writingSVG(val('kt-litera'), parseInt(val('kt-powtorzenia') || '4', 10));
+      else if (r === 'szlaczyki') svg = patternSVG(val('kt-wzor'));
+      else if (r === 'emocje') svg = emotionSVG(val('kt-emocja'));
+      var html = '<div class="kt-card">';
+      if (tytul) html += '<h3 class="kt-title">' + esc(tytul) + '</h3>';
+      html += '<p class="gen-meta">Imię: \u2026\u2026\u2026\u2026\u2026\u2026\u2026\u2026  Data: \u2026\u2026\u2026\u2026\u2026\u2026\u2026\u2026</p>';
+      html += '<div class="kt-svg">' + svg + '</div>';
+      html += '</div>';
+      document.getElementById('kt-content').innerHTML = html;
+      out.classList.add('active');
+      out.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+    function val(id) { var el = document.getElementById(id); return el ? el.value.trim() : ''; }
+    function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+    function rep(s, n) { var o = ''; for (var i = 0; i < n; i++) o += s; return o; }
+    function wrap(inner) {
+      return '<svg viewBox="0 0 380 490" width="100%" role="img" aria-label="Karta do druku" xmlns="http://www.w3.org/2000/svg" style="max-width:720px;margin:0 auto;display:block;background:#fff;border-radius:var(--radius-md)">' + inner + '</svg>';
+    }
+    function colorSVG(name) {
+      var g = '<g fill="none" stroke="#111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">';
+      if (name === 'motyl') {
+        g += '<ellipse cx="190" cy="255" rx="12" ry="72"/>';
+        g += '<circle cx="190" cy="178" r="16"/>';
+        g += '<path d="M190 188 C138 150 78 172 84 232 C90 288 152 296 190 256"/>';
+        g += '<path d="M190 188 C242 150 302 172 296 232 C290 288 228 296 190 256"/>';
+        g += '<path d="M185 168 q-22 -26 -48 -22"/>';
+        g += '<path d="M195 168 q22 -26 48 -22"/>';
+      } else if (name === 'ryba') {
+        g += '<ellipse cx="168" cy="255" rx="108" ry="66"/>';
+        g += '<path d="M276 255 l66 -56 0 112 z"/>';
+        g += '<circle cx="230" cy="240" r="7" fill="#111"/>';
+        g += '<path d="M150 210 q26 -30 56 -8"/>';
+        g += '<path d="M150 300 q26 30 56 8"/>';
+        g += '<path d="M124 255 q32 18 56 0"/>';
+      } else if (name === 'kot') {
+        g += '<circle cx="190" cy="262" r="92"/>';
+        g += '<path d="M120 202 l18 -56 50 40"/>';
+        g += '<path d="M260 202 l-18 -56 -50 40"/>';
+        g += '<circle cx="160" cy="252" r="7" fill="#111"/>';
+        g += '<circle cx="220" cy="252" r="7" fill="#111"/>';
+        g += '<path d="M180 286 l10 12 10 -12 z" fill="#111"/>';
+        g += '<path d="M190 298 q-22 16 -44 4"/>';
+        g += '<path d="M190 298 q22 16 44 4"/>';
+        g += '<path d="M150 274 l-44 -4"/><path d="M150 284 l-44 6"/>';
+        g += '<path d="M230 274 l44 -4"/><path d="M230 284 l44 6"/>';
+      } else if (name === 'drzewo') {
+        g += '<rect x="172" y="332" width="36" height="120"/>';
+        g += '<circle cx="190" cy="220" r="80"/>';
+        g += '<circle cx="132" cy="258" r="50"/>';
+        g += '<circle cx="248" cy="258" r="50"/>';
+        g += '<circle cx="158" cy="188" r="42"/>';
+        g += '<circle cx="222" cy="188" r="42"/>';
+      } else if (name === 'balwan') {
+        g += '<circle cx="190" cy="372" r="84"/>';
+        g += '<circle cx="190" cy="240" r="58"/>';
+        g += '<circle cx="190" cy="152" r="42"/>';
+        g += '<path d="M177 150 l13 -44 15 44 z" fill="#111"/>';
+        g += '<circle cx="176" cy="146" r="4" fill="#111"/>';
+        g += '<circle cx="204" cy="146" r="4" fill="#111"/>';
+        g += '<rect x="150" y="108" width="80" height="18"/>';
+        g += '<rect x="160" y="64" width="60" height="48"/>';
+        g += '<circle cx="190" cy="226" r="5" fill="#111"/>';
+        g += '<circle cx="190" cy="258" r="5" fill="#111"/>';
+        g += '<circle cx="190" cy="290" r="5" fill="#111"/>';
+      } else if (name === 'lisc') {
+        g += '<path d="M190 70 Q302 232 190 432 Q78 232 190 70 Z"/>';
+        g += '<path d="M190 70 L190 432"/>';
+        g += '<path d="M190 162 Q236 188 256 228"/>';
+        g += '<path d="M190 162 Q144 188 124 228"/>';
+        g += '<path d="M190 272 Q246 298 266 338"/>';
+        g += '<path d="M190 272 Q134 298 114 338"/>';
+        g += '<path d="M190 432 L190 478"/>';
+        g += '<line x1="256" y1="228" x2="324" y2="212" stroke-width="1.5"/>';
+        g += '<text x="328" y="216" font-size="14" fill="#111" stroke="none" font-family="Inter,sans-serif">blaszka</text>';
+        g += '<line x1="190" y1="322" x2="324" y2="346" stroke-width="1.5"/>';
+        g += '<text x="328" y="350" font-size="14" fill="#111" stroke="none" font-family="Inter,sans-serif">nerw</text>';
+        g += '<line x1="190" y1="462" x2="252" y2="474" stroke-width="1.5"/>';
+        g += '<text x="256" y="478" font-size="14" fill="#111" stroke="none" font-family="Inter,sans-serif">ogonek</text>';
+      } else {
+        g += '<rect x="30" y="30" width="320" height="430"/>';
+      }
+      g += '</g>';
+      return wrap(g);
+    }
+    function patternSVG(type) {
+      var rowH = 80, startY = 50, rows = 4, inner = '';
+      function p(type, y) {
+        if (type === 'petle') return 'M10 ' + (y + 30) + ' ' + rep('q10 -26 20 0 q10 26 20 0 ', 9);
+        if (type === 'fale') return 'M10 ' + (y + 30) + ' ' + rep('q16 -22 32 0 q16 22 32 0 ', 6);
+        if (type === 'zygzak') return 'M10 ' + (y + 30) + ' ' + rep('l22 -22 22 22 22 -22 22 22 ', 4);
+        if (type === 'kolka') return 'M22 ' + (y + 30) + ' ' + rep('a12 12 0 1 0 24 0 m24 0 ', 7);
+        if (type === 'spirale') return 'M16 ' + (y + 30) + ' ' + rep('q18 0 18 -18 q0 -18 -18 -18 q-18 0 -18 18 ', 5);
+        return 'M10 ' + (y + 30) + ' L370 ' + (y + 30);
+      }
+      for (var i = 0; i < rows; i++) {
+        var op = i === 0 ? 1 : 0.32;
+        var sw = i === 0 ? 3 : 2.4;
+        inner += '<path d="' + p(type, startY + i * rowH) + '" fill="none" stroke="#111" stroke-width="' + sw + '" stroke-opacity="' + op + '" stroke-linecap="round" stroke-linejoin="round"/>';
+      }
+      return wrap(inner);
+    }
+    function emotionSVG(name) {
+      var g = '<g fill="none" stroke="#111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">';
+      g += '<circle cx="190" cy="215" r="112"/>';
+      if (name === 'zlosc') {
+        g += '<path d="M148 188 l38 20"/><path d="M232 188 l-38 20"/>';
+      } else {
+        g += '<circle cx="160" cy="195" r="8" fill="#111"/><circle cx="220" cy="195" r="8" fill="#111"/>';
+      }
+      if (name === 'radosc') g += '<path d="M150 248 q40 52 80 0"/>';
+      else if (name === 'smutek') g += '<path d="M150 270 q40 -52 80 0"/>';
+      else if (name === 'zlosc') g += '<path d="M150 272 q40 -42 80 0"/>';
+      else if (name === 'zdziwienie') g += '<ellipse cx="190" cy="266" rx="14" ry="18"/>';
+      else g += '<path d="M150 256 q40 40 80 0"/>';
+      g += '</g>';
+      var labels = { radosc: 'radość', smutek: 'smutek', zlosc: 'złość', zdziwienie: 'zdziwienie' };
+      g += '<text x="190" y="402" font-size="24" fill="#111" stroke="none" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-weight="700">' + (labels[name] || '') + '</text>';
+      g += '<text x="190" y="442" font-size="13" fill="#111" stroke="none" text-anchor="middle" font-family="Inter,sans-serif">Jak się czujesz? Pokoloruj i opowiedz.</text>';
+      return wrap(g);
+    }
+    function writingSVG(text, reps) {
+      var ch = (text || 'Aa').charAt(0) || 'A';
+      reps = reps && reps > 0 ? reps : 4;
+      var rowH = 86, startY = 60, rows = 5, inner = '';
+      for (var r = 0; r < rows; r++) {
+        var y = startY + r * rowH;
+        var top = y, mid = y + 32, base = y + 64, bot = y + rowH - 4;
+        inner += '<line x1="20" y1="' + top + '" x2="360" y2="' + top + '" stroke="#cfd6e4" stroke-width="1"/>';
+        inner += '<line x1="20" y1="' + mid + '" x2="360" y2="' + mid + '" stroke="#9bb3d1" stroke-width="1" stroke-dasharray="5 5"/>';
+        inner += '<line x1="20" y1="' + base + '" x2="360" y2="' + base + '" stroke="#111" stroke-width="1.6"/>';
+        inner += '<line x1="20" y1="' + bot + '" x2="360" y2="' + bot + '" stroke="#cfd6e4" stroke-width="1"/>';
+        if (r < rows - 1) {
+          var step = Math.min(74, 330 / reps);
+          var x = 30;
+          var op = r === 0 ? 0.55 : 0.3;
+          for (var c = 0; c < reps; c++) {
+            inner += '<text x="' + x + '" y="' + base + '" font-size="50" fill="#111" fill-opacity="' + op + '" stroke="none" font-family="Segoe Print, Comic Sans MS, cursive">' + esc(ch) + '</text>';
+            x += step;
+          }
+        }
+      }
+      return wrap(inner);
+    }
+  })();

@@ -26,6 +26,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://znaszto.netlify.app/karty-terapeutyczne</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://znaszto.netlify.app/narzedzia-tik</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>

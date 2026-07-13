@@ -122,6 +122,7 @@ ${content}
           <li><a href="/generator">Generator lekcji AI</a></li>
           <li><a href="/generator-kart-pracy">Generator kart pracy</a></li>
           <li><a href="/generator-opinii">Generator opinii</a></li>
+          <li><a href="/karty-terapeutyczne">Karty terapeutyczne</a></li>
           <li><a href="/scenariusze">Scenariusze lekcji</a></li>
           <li><a href="/blog">Blog</a></li>
           <li><a href="/o-projekcie">O projekcie</a></li>
@@ -391,6 +392,12 @@ function generatorContent() {
         <span class="card__icon" aria-hidden="true">${ICON.shield}</span>
         <h3>Generator opinii i obserwacji</h3>
         <p>Opinie, wnioski do PPP i karty obserwacji dla nauczycieli, pedagogów i psychologów szkolnych.</p>
+        <span class="card__arrow">Otwórz ${ICON.arrow}</span>
+      </a>
+      <a class="card" href="/karty-terapeutyczne">
+        <span class="card__icon" aria-hidden="true">${ICON.sparkles}</span>
+        <h3>Karty edukacyjne i terapeutyczne</h3>
+        <p>Kolorowanki, nauka pisania, szlaczyki i emocje — karty do druku dla przedszkola, klas 1–3 i specjalistów.</p>
         <span class="card__arrow">Otwórz ${ICON.arrow}</span>
       </a>
     </div>
@@ -709,6 +716,12 @@ function narzedziaContent() {
         <p>Opinie, wnioski do PPP i karty obserwacji dla nauczycieli, pedagogów i psychologów szkolnych.</p>
         <span class="card__arrow">Otwórz ${ICON.arrow}</span>
       </a>
+      <a class="card" href="/karty-terapeutyczne">
+        <span class="card__icon" aria-hidden="true">${ICON.sparkles}</span>
+        <h3>Karty edukacyjne i terapeutyczne</h3>
+        <p>Kolorowanki, nauka pisania, szlaczyki i emocje — karty do druku dla przedszkola, klas 1–3 i specjalistów.</p>
+        <span class="card__arrow">Otwórz ${ICON.arrow}</span>
+      </a>
     </div>
   </div>
 </section>`;
@@ -842,6 +855,78 @@ function generatorJsonLd() {
   ] })}</script>`;
 }
 
+function kartyTerapeutyczneContent() {
+  return `<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Narzędzie</span>
+      <h1>Karty edukacyjne i terapeutyczne</h1>
+      <p class="lead" style="margin-inline:auto">Gotowe karty do druku dla przedszkola i klas 1–3 oraz do pracy pedagoga, logopedy i terapeuty. Kolorowanki, nauka pisania, szlaczyki i emocje — za darmo, z eksportem do PDF.</p>
+    </div>
+    <form class="gen-form" id="kt-form" novalidate>
+      <div class="field">
+        <label for="kt-rodzaj">Rodzaj karty</label>
+        <select id="kt-rodzaj" name="rodzaj">
+          <option value="kolorowanka">Kolorowanka</option>
+          <option value="pisanie">Nauka pisania (litery do odrysowania)</option>
+          <option value="szlaczyki">Szlaczyki (grafomotoryka)</option>
+          <option value="emocje">Emocje</option>
+        </select>
+      </div>
+      <div class="field" id="kt-grp-kolorowanka">
+        <label for="kt-szablon">Szablon kolorowanki</label>
+        <select id="kt-szablon" name="szablon">
+          <option value="motyl">Motyl</option>
+          <option value="ryba">Ryba</option>
+          <option value="kot">Kot</option>
+          <option value="drzewo">Drzewo</option>
+          <option value="balwan">Bałwan</option>
+          <option value="lisc">Liść (z częściami do podpisania)</option>
+        </select>
+      </div>
+      <div class="field" id="kt-grp-pisanie" style="display:none">
+        <label for="kt-litera">Litera do ćwiczenia</label>
+        <input type="text" id="kt-litera" name="litera" maxlength="4" placeholder="np. A, a, ł, M" value="A">
+        <span class="hint">Wpisz jedną literę (dużą lub małą). Polskie znaki obsługiwane.</span>
+        <label for="kt-powtorzenia" style="margin-top:var(--space-3)">Liczba powtórzeń w rzędzie</label>
+        <input type="number" id="kt-powtorzenia" name="powtorzenia" min="2" max="8" value="4">
+      </div>
+      <div class="field" id="kt-grp-szlaczyki" style="display:none">
+        <label for="kt-wzor">Wzór szlaczka</label>
+        <select id="kt-wzor" name="wzor">
+          <option value="petle">Pętle</option>
+          <option value="fale">Fale</option>
+          <option value="zygzak">Zygzak</option>
+          <option value="kolka">Kółeczka</option>
+          <option value="spirale">Spirale</option>
+        </select>
+      </div>
+      <div class="field" id="kt-grp-emocje" style="display:none">
+        <label for="kt-emocja">Emocja</label>
+        <select id="kt-emocja" name="emocja">
+          <option value="radosc">Radość</option>
+          <option value="smutek">Smutek</option>
+          <option value="zlosc">Złość</option>
+          <option value="zdziwienie">Zdziwienie</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="kt-tytul">Tytuł karty (opcjonalnie)</label>
+        <input type="text" id="kt-tytul" name="tytul" placeholder="np. Moja pierwsza litera">
+      </div>
+      <div><button type="submit" class="btn btn--primary btn--lg">${ICON.wand} Wygeneruj kartę</button></div>
+    </form>
+    <div class="gen-output" id="kt-out" aria-live="polite">
+      <div class="gen-panel active" id="kt-content"></div>
+      <div class="gen-actions">
+        <button type="button" class="btn btn--primary" onclick="window.print()">${ICON.file} Drukuj / zapisz jako PDF</button>
+        <a class="btn btn--ghost" href="/narzedzia">Inne narzędzia</a>
+      </div>
+    </div>
+  </div>
+</section>`;
+}
+
 function pages() {
   return [
     {
@@ -883,6 +968,14 @@ function pages() {
       canonical: '/generator-opinii',
       activeNav: '/narzedzia',
       content: opiniaContent(),
+    },
+    {
+      path: 'karty-terapeutyczne.html',
+      title: 'Karty edukacyjne i terapeutyczne — ZnaszTo',
+      description: 'Darmowe karty do druku dla przedszkola i klas 1–3 oraz dla pedagoga, logopedy i terapeuty: kolorowanki, nauka pisania, szlaczyki i emocje. Z eksportem do PDF.',
+      canonical: '/karty-terapeutyczne',
+      activeNav: '/narzedzia',
+      content: kartyTerapeutyczneContent(),
     },
     {
       path: 'narzedzia-tik.html',
@@ -1303,6 +1396,7 @@ const urls = [
   ['/narzedzia', '0.9', 'weekly'],
   ['/generator-kart-pracy', '0.8', 'weekly'],
   ['/generator-opinii', '0.8', 'weekly'],
+  ['/karty-terapeutyczne', '0.8', 'weekly'],
   ['/narzedzia-tik', '0.8', 'weekly'],
   ['/llm-w-szkole', '0.8', 'weekly'],
   ['/ai-w-pracy', '0.8', 'weekly'],
