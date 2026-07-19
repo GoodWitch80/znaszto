@@ -81,7 +81,7 @@ function layout(opts) {
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap">
-  <link rel="stylesheet" href="${assetBase}styles.css?v=20260713b">
+  <link rel="stylesheet" href="${assetBase}styles.css?v=20260713c">
 ${jsonld}
 </head>
 <body class="${bodyClass}">
@@ -146,7 +146,7 @@ ${content}
       <span>ZnaszTo — kompetencje cyfrowe dla nauczycieli</span>
     </div>
   </footer>
-  <script src="${assetBase}app.js?v=20260713b" defer></script>
+  <script src="${assetBase}app.js?v=20260713c" defer></script>
 </body>
 </html>
 `;

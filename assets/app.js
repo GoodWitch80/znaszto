@@ -418,7 +418,7 @@
       return '<svg viewBox="0 0 380 490" width="100%" role="img" aria-label="Karta do druku" xmlns="http://www.w3.org/2000/svg" style="max-width:720px;margin:0 auto;display:block;background:#fff;border-radius:var(--radius-md)">' + inner + '</svg>';
     }
     function colorSVG(name) {
-      var g = '<g fill="none" stroke="#111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">';
+      var g = '<g fill="none" stroke="#111" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">';
       if (name === 'motyl') {
         g += '<ellipse cx="190" cy="255" rx="12" ry="72"/>';
         g += '<circle cx="190" cy="178" r="16"/>';
@@ -426,6 +426,8 @@
         g += '<path d="M190 188 C242 150 302 172 296 232 C290 288 228 296 190 256"/>';
         g += '<path d="M185 168 q-22 -26 -48 -22"/>';
         g += '<path d="M195 168 q22 -26 48 -22"/>';
+        g += '<circle cx="130" cy="215" r="13"/><circle cx="150" cy="255" r="9"/>';
+        g += '<circle cx="250" cy="215" r="13"/><circle cx="230" cy="255" r="9"/>';
       } else if (name === 'ryba') {
         g += '<ellipse cx="168" cy="255" rx="108" ry="66"/>';
         g += '<path d="M276 255 l66 -56 0 112 z"/>';
@@ -433,6 +435,7 @@
         g += '<path d="M150 210 q26 -30 56 -8"/>';
         g += '<path d="M150 300 q26 30 56 8"/>';
         g += '<path d="M124 255 q32 18 56 0"/>';
+        g += '<path d="M150 235 q14 -12 28 0"/><path d="M180 235 q14 -12 28 0"/><path d="M150 270 q14 -12 28 0"/><path d="M180 270 q14 -12 28 0"/>';
       } else if (name === 'kot') {
         g += '<circle cx="190" cy="262" r="92"/>';
         g += '<path d="M120 202 l18 -56 50 40"/>';
@@ -451,6 +454,7 @@
         g += '<circle cx="248" cy="258" r="50"/>';
         g += '<circle cx="158" cy="188" r="42"/>';
         g += '<circle cx="222" cy="188" r="42"/>';
+        g += '<circle cx="160" cy="215" r="9"/><circle cx="230" cy="245" r="9"/><circle cx="190" cy="280" r="9"/>';
       } else if (name === 'balwan') {
         g += '<circle cx="190" cy="380" r="80"/>';
         g += '<circle cx="190" cy="245" r="55"/>';
@@ -506,7 +510,7 @@
       return wrap(inner);
     }
     function emotionSVG(name) {
-      var g = '<g fill="none" stroke="#111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">';
+      var g = '<g fill="none" stroke="#111" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">';
       g += '<circle cx="190" cy="220" r="118"/>';
       g += '<path d="M168 106 q8 -20 18 -6 q8 -16 20 -2 q8 -14 18 -4 q8 -12 16 -2"/>';
       g += '<circle cx="132" cy="248" r="11"/>';
