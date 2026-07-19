@@ -122,7 +122,6 @@ ${content}
           <li><a href="/generator">Generator lekcji AI</a></li>
           <li><a href="/generator-kart-pracy">Generator kart pracy</a></li>
           <li><a href="/generator-opinii">Generator opinii</a></li>
-          <li><a href="/karty-terapeutyczne">Karty terapeutyczne</a></li>
           <li><a href="/scenariusze">Scenariusze lekcji</a></li>
           <li><a href="/blog">Blog</a></li>
           <li><a href="/o-projekcie">O projekcie</a></li>
@@ -392,12 +391,6 @@ function generatorContent() {
         <span class="card__icon" aria-hidden="true">${ICON.shield}</span>
         <h3>Generator opinii i obserwacji</h3>
         <p>Opinie, wnioski do PPP i karty obserwacji dla nauczycieli, pedagogów i psychologów szkolnych.</p>
-        <span class="card__arrow">Otwórz ${ICON.arrow}</span>
-      </a>
-      <a class="card" href="/karty-terapeutyczne">
-        <span class="card__icon" aria-hidden="true">${ICON.sparkles}</span>
-        <h3>Karty edukacyjne i terapeutyczne</h3>
-        <p>Kolorowanki, nauka pisania, szlaczyki i emocje — karty do druku dla przedszkola, klas 1–3 i specjalistów.</p>
         <span class="card__arrow">Otwórz ${ICON.arrow}</span>
       </a>
     </div>
@@ -764,12 +757,6 @@ function narzedziaContent() {
         <p>Opinie, wnioski do PPP i karty obserwacji dla nauczycieli, pedagogów i psychologów szkolnych.</p>
         <span class="card__arrow">Otwórz ${ICON.arrow}</span>
       </a>
-      <a class="card" href="/karty-terapeutyczne">
-        <span class="card__icon" aria-hidden="true">${ICON.sparkles}</span>
-        <h3>Karty edukacyjne i terapeutyczne</h3>
-        <p>Kolorowanki, nauka pisania, szlaczyki i emocje — karty do druku dla przedszkola, klas 1–3 i specjalistów.</p>
-        <span class="card__arrow">Otwórz ${ICON.arrow}</span>
-      </a>
     </div>
   </div>
 </section>`;
@@ -1030,14 +1017,6 @@ function pages() {
       content: opiniaContent(),
     },
     {
-      path: 'karty-terapeutyczne.html',
-      title: 'Karty edukacyjne i terapeutyczne — ZnaszTo',
-      description: 'Darmowe karty do druku dla przedszkola i klas 1–3 oraz dla pedagoga, logopedy i terapeuty: kolorowanki, nauka pisania, szlaczyki i emocje. Z eksportem do PDF.',
-      canonical: '/karty-terapeutyczne',
-      activeNav: '/narzedzia',
-      content: kartyTerapeutyczneContent(),
-    },
-    {
       path: 'narzedzia-tik.html',
       title: 'Narzędzia TIK — ZnaszTo',
       description: 'Przegląd narzędzi TIK dla nauczycieli: platformy edukacyjne, prezentacje, tablice, arkusze, kalendarze i wideokonferencje.',
@@ -1223,12 +1202,6 @@ function pages() {
         <p>Krok po kroku: jak wygenerować kartę pracy, konspekt i zadanie domowe i wyeksportować do PDF.</p>
         <span class="card__arrow">Czytaj artykuł ${ICON.arrow}</span>
       </a>
-      <a class="card" href="/blog/karty-terapeutyczne-do-druku">
-        <span class="card__icon" aria-hidden="true">${ICON.sparkles}</span>
-        <h3>Karty terapeutyczne i edukacyjne do druku — jak wykorzystać w pracy z dzieckiem</h3>
-        <p>Kolorowanki, nauka pisania, szlaczyki, emocje i labirynty — darmowe karty dla przedszkola, klas 1–3 i specjalistów.</p>
-        <span class="card__arrow">Czytaj artykuł ${ICON.arrow}</span>
-      </a>
     </div>
   </div>
 </section>`,
@@ -1272,16 +1245,6 @@ function pages() {
       activeNav: '/blog',
       jsonld: articleJsonLdGeneric(A_KARTA),
       content: articleContentGeneric(A_KARTA),
-    },
-    {
-      path: 'blog/karty-terapeutyczne-do-druku.html',
-      title: A_KARTY.title + ' | ZnaszTo',
-      description: A_KARTY.description,
-      canonical: A_KARTY.canonical,
-      ogType: 'article',
-      activeNav: '/blog',
-      jsonld: articleJsonLdGeneric(A_KARTY),
-      content: articleContentGeneric(A_KARTY),
     },
     {
       path: 'slownik-ai.html',
@@ -1472,7 +1435,6 @@ const urls = [
   ['/narzedzia', '0.9', 'weekly'],
   ['/generator-kart-pracy', '0.8', 'weekly'],
   ['/generator-opinii', '0.8', 'weekly'],
-  ['/karty-terapeutyczne', '0.8', 'weekly'],
   ['/narzedzia-tik', '0.8', 'weekly'],
   ['/llm-w-szkole', '0.8', 'weekly'],
   ['/ai-w-pracy', '0.8', 'weekly'],
@@ -1483,7 +1445,6 @@ const urls = [
   ['/blog/rodo-ai-w-szkole', '0.8', 'weekly'],
   ['/blog/prompt-engineering-dla-nauczycieli', '0.8', 'weekly'],
   ['/blog/karta-pracy-z-ai-w-5-minut', '0.8', 'weekly'],
-  ['/blog/karty-terapeutyczne-do-druku', '0.8', 'weekly'],
   ['/slownik-ai', '0.7', 'monthly'],
   ['/kontakt', '0.5', 'monthly'],
   ['/o-projekcie', '0.6', 'monthly'],
